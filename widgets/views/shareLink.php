@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 
+\humhub\modules\socialshare\assets\Assets::register($this);
 ?>
 <span class="shareLinkContainer">
 	<div class="pull-right" id="">

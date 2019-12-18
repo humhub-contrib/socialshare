@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\socialshare;
+namespace humhub\modules\socialshare;
 
 class Module extends \humhub\components\Module
 {
-    
+    public $resourcesPath = 'resources';
 }

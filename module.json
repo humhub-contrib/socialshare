@@ -8,6 +8,6 @@
     "humhub": {
         "minVersion": "1.2"
     },    
-    "screenshots": ["assets/screenshot-1.png", "assets/screenshot-2.png", "assets/screenshot-3.png"],
-    "version": "1.0.2"
+    "screenshots": ["resources/screenshot-1.png", "resources/screenshot-2.png", "resources/Screenshot_3.png", "resources/Screenshot_4.png"],
+    "version": "1.0.3"
 }

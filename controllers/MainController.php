@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\socialshare\controllers;
+namespace humhub\modules\socialshare\controllers;
 
 use Yii;
 use yii\web\Controller;

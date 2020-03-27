@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\socialshare\widgets;
+namespace humhub\modules\socialshare\widgets;
 
 use Yii;
 use yii\helpers\Url;

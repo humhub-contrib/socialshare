@@ -1,9 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use humhub\modules\socialshare\assets\Assets;
 
-Assets::register($this);
 ?>
 <span class="shareLinkContainer">
 	<div class="pull-right" id="">
@@ -30,5 +28,6 @@ Assets::register($this);
 	    <?= Html::a('<i class="fa fa-twitter" style="font-size:16px;color:#55acee">&nbsp;</i>', 'https://twitter.com/intent/tweet?text=' . urlencode($object->getContentDescription()) . '&url=' . urlencode($permalink),['onclick'=> $option]);?>
 	    <?= Html::a('<i class="fa fa-linkedin-square" style="font-size:16px;color:#0177b5">&nbsp;</i>', 'https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title=' . urlencode($object->getContentDescription()) . '&url=' . urlencode($permalink) . '&ro=false', ['onclick'=> $option]);?>
 	    <?= Html::a('<i class="fa fa-share" style="font-size:16px;color:#00c300">&nbsp;</i>', 'https://social-plugins.line.me/lineit/share?' . '&text=' . urlencode($object->getContentDescription()) . '&url=' . urlencode($permalink),['onclick'=> $option]);?>
+	    <?= Html::a('<i class="fa fa-telegram" style="font-size:16px;color:#0088cc">&nbsp;</i>', 'https://t.me/share?' . '&url=' . rawurlencode($permalink) . '&text=' . rawurlencode($object->getContentDescription()),['onclick'=> $option]);?>
 	</div>
 </span>

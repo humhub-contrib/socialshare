@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.4 (10 March, 2023)
+1.0.5 (10 March, 2023)
 -----------------------
 - Fix #5: PHP 8.2 compatibility
 

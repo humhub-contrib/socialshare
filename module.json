@@ -1,13 +1,21 @@
 {
-    "id": "socialshare",
-    "name": "Social Share ",
-    "description": "Share Post on other Social Networks",
-    "keywords": [
-        "social network"
-    ],
-    "humhub": {
-        "minVersion": "1.2"
-    },    
-    "screenshots": ["resources/screenshot-1.png", "resources/screenshot-2.png", "resources/Screenshot_3.png", "resources/Screenshot_4.png"],
-    "version": "1.0.3"
+  "id": "socialshare",
+  "name": "Social Share ",
+  "description": "Share Post on other Social Networks",
+  "humhub": {
+    "minVersion": "1.10"
+  },
+  "homepage": "https://github.com/humhub-contrib/social-share",
+  "screenshots": [
+    "resources/screenshot-1.png",
+    "resources/screenshot-2.png",
+    "resources/Screenshot_3.png",
+    "resources/Screenshot_4.png"
+  ],
+  "version": "1.0.4",
+  "authors": [
+    {
+      "name": "radu-stanescu"
+    }
+  ]
 }

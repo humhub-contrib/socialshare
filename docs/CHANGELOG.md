@@ -1,7 +1,11 @@
 Changelog
 =========
 
-Unreleased
+1.1.0 (Unreleased)
+-----------------------
+- Fix #10: Update module resources path
+
+1.0.7 (Unreleased)
 -----------------------
 - Fix #8: Remove extra dot in wall entry bottom links
 

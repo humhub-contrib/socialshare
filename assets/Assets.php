@@ -10,6 +10,6 @@ class Assets extends AssetBundle
     public $sourcePath = '@socialshare/resources';
 
     public $publishOptions = [
-        'forceCopy' => 'false'
+        'forceCopy' => 'false',
     ];
 }

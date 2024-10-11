@@ -1,9 +1,10 @@
 Changelog
 =========
 
-Unreleased
+1.0.7 (Unreleased)
 -----------------------
 - Fix #8: Remove extra dot in wall entry bottom links
+- Enh #11: Use PHP CS Fixer
 
 1.0.6 (10 March, 2023)
 -----------------------

@@ -12,7 +12,7 @@ return [
         [
             'class' => WallEntryLinks::class,
             'event' => WallEntryLinks::EVENT_AFTER_RUN,
-            'callback' => [Events::class, 'onWallEntryLinksAfterRun']
+            'callback' => [Events::class, 'onWallEntryLinksAfterRun'],
         ],
     ],
 ];

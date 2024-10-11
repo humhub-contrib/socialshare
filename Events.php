@@ -9,7 +9,6 @@ use yii\helpers\Url;
 
 class Events
 {
-
     public static function onTopMenuInit($event)
     {
         $event->sender->addItem([

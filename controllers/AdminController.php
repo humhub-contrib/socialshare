@@ -11,9 +11,11 @@ class AdminController extends Controller
     public function actionIndex()
     {
         $settingsModel = new ConfigureForm();
-        $settingsModel->loadSettings();
-        if ($settingsModel->load(Yii::$app->request->post()) && $settingsModel->saveSettings()) {
-            $this->view->success(Yii::t('SocialshareModule.base', 'Social Share settings saved!'));
+
+        if ($settingsModel->load(Yii::$app->request->post()) && $settingsModel->validate()) {
+            if ($settingsModel->saveSettings()) {
+                $this->view->success(Yii::t('SocialshareModule.base', 'Social Share settings saved!'));
+            }
         }
 
         return $this->render('index', ['model' => $settingsModel]);

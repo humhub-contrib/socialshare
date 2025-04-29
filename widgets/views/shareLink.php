@@ -9,27 +9,16 @@ Assets::register($this);
 $settings = new ConfigureForm();
 $settings->loadSettings();
 
-$option = "
-    var width = 575,
-        height = 400,
-        left = ($(window).width() - width) / 2,
-        top = ($(window).height() - height) / 2,
-        url = this.href;
-        opts = 'status=1' +
-            ',width=' + width +
-            ',height=' + height +
-            ',top=' + top +
-            ',left=' + left;
-
-        window.open(url, 'share', opts);
-
-        return false;
-";
-
-$linkOptions = ['onclick' => $option, 'target' => '_blank', 'rel' => 'noopener noreferrer'];
+$linkOptions = [
+    'data-ui-widget' => 'socialshare.ShareLink',
+    'data-action-click' => 'open',
+    'target' => '_blank',
+    'rel' => 'noopener noreferrer'
+];
 
 /** @var SocialShareService $socialShareService */
-$socialShareService = new SOcialShareService;
+$socialShareService = new SocialShareService();
+
 ?>
 
 <span class="shareLinkContainer">
@@ -39,7 +28,7 @@ $socialShareService = new SOcialShareService;
                 SocialShareService::PLATFORM_FACEBOOK,
                 $permalink,
                 $object->getContentDescription(),
-                array_merge($linkOptions, ['onclick' => $option])
+                $linkOptions
             ); ?>
         <?php endif; ?>
 
@@ -48,7 +37,7 @@ $socialShareService = new SOcialShareService;
                 SocialShareService::PLATFORM_TWITTER,
                 $permalink,
                 $object->getContentDescription(),
-                array_merge($linkOptions, ['onclick' => $option])
+                $linkOptions
             ); ?>
         <?php endif; ?>
 
@@ -57,7 +46,7 @@ $socialShareService = new SOcialShareService;
                 SocialShareService::PLATFORM_LINKEDIN,
                 $permalink,
                 $object->getContentDescription(),
-                array_merge($linkOptions, ['onclick' => $option])
+                $linkOptions
             ); ?>
         <?php endif; ?>
 
@@ -66,7 +55,7 @@ $socialShareService = new SOcialShareService;
                 SocialShareService::PLATFORM_LINE,
                 $permalink,
                 $object->getContentDescription(),
-                array_merge($linkOptions, ['onclick' => $option])
+                $linkOptions
             ); ?>
         <?php endif; ?>
 
@@ -75,7 +64,7 @@ $socialShareService = new SOcialShareService;
                 SocialShareService::PLATFORM_BLUESKY,
                 $permalink,
                 $object->getContentDescription(),
-                array_merge($linkOptions, ['onclick' => $option])
+                $linkOptions
             ); ?>
         <?php endif; ?>
     </div>

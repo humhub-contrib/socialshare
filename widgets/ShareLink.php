@@ -25,6 +25,15 @@ class ShareLink extends JsWidget
     protected $socialShareService;
 
     /**
+     * Returns the container HTML attributes
+     * @return array HTML attributes for the container
+     */
+    protected function getAttributes()
+    {
+        return ['class' => 'shareLinkContainer'];
+    }
+
+    /**
      * @inheritdoc
      */
     public function run()
@@ -36,6 +45,7 @@ class ShareLink extends JsWidget
             'id' => $this->object->getUniqueId(),
             'permalink' => $permaLink,
             'socialShareService' => $this->socialShareService,
+            'options' => $this->getOptions(),
         ]);
     }
 }

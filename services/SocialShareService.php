@@ -3,6 +3,7 @@
 namespace humhub\modules\socialshare\services;
 
 use yii\helpers\Html;
+use humhub\modules\ui\icon\widgets\Icon;
 
 /**
  * SocialShareService provides methods for sharing content to various social media platforms.
@@ -44,27 +45,27 @@ class SocialShareService
         $this->platforms = [
             self::PLATFORM_FACEBOOK => [
                 'urlPattern' => 'https://www.facebook.com/sharer/sharer.php?u={url}&description={text}',
-                'iconClass' => 'fa fa-facebook',
+                'iconClass' => 'facebook',
                 'iconColor' => '#3a5795',
             ],
             self::PLATFORM_TWITTER => [
                 'urlPattern' => 'https://twitter.com/intent/tweet?text={text}&url={url}',
-                'iconClass' => 'fa fa-twitter',
+                'iconClass' => 'twitter',
                 'iconColor' => '#55acee',
             ],
             self::PLATFORM_LINKEDIN => [
                 'urlPattern' => 'https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title={text}&url={url}&ro=false',
-                'iconClass' => 'fa fa-linkedin-square',
+                'iconClass' => 'linkedin-square',
                 'iconColor' => '#0177b5',
             ],
             self::PLATFORM_LINE => [
                 'urlPattern' => 'https://social-plugins.line.me/lineit/share?&text={text}&url={url}',
-                'iconClass' => 'fa fa-share',
+                'iconClass' => 'share',
                 'iconColor' => '#00c300',
             ],
             self::PLATFORM_BLUESKY => [
                 'urlPattern' => 'https://bsky.app/intent/compose?text={text}',
-                'iconClass' => 'fa fa-share',
+                'iconClass' => 'share',
                 'iconColor' => '#4f9bd9',
             ],
         ];
@@ -114,6 +115,39 @@ class SocialShareService
     }
 
     /**
+     * Get only the platforms that are enabled in the module settings
+     *
+     * @return array List of enabled platform identifiers
+     */
+    public function getEnabledPlatforms()
+    {
+        $config = \Yii::$app->getModule('socialshare')->settings;
+        $enabledPlatforms = [];
+
+        if ($config->get('facebook_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_FACEBOOK;
+        }
+
+        if ($config->get('twitter_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_TWITTER;
+        }
+
+        if ($config->get('linkedin_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_LINKEDIN;
+        }
+
+        if ($config->get('line_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_LINE;
+        }
+
+        if ($config->get('bluesky_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_BLUESKY;
+        }
+
+        return $enabledPlatforms;
+    }
+
+    /**
      * Generate share link HTML for a specific platform
      * 
      * @param string $platform Platform identifier
@@ -137,12 +171,12 @@ class SocialShareService
     }
 
     /**
-     * Generate HTML for all supported share links
+     * Generate HTML for all enabled share links
      * 
      * @param mixed $object Content object that provides getContentDescription()
      * @param string $permalink Permalink to the content
      * @param array $options Rendering options
-     * @return string HTML with all share links
+     * @return string HTML with all enabled share links
      */
     public function renderShareLinks($object, $permalink, $options = [])
     {
@@ -151,8 +185,9 @@ class SocialShareService
             : '';
 
         $links = [];
+        $enabledPlatforms = $this->getEnabledPlatforms();
 
-        foreach (array_keys($this->platforms) as $platform) {
+        foreach ($enabledPlatforms as $platform) {
             $links[] = $this->createShareLink($platform, $permalink, $description, $options);
         }
 
@@ -174,7 +209,8 @@ class SocialShareService
         $iconClass = $this->platforms[$platform]['iconClass'];
         $iconColor = $this->platforms[$platform]['iconColor'];
 
-        return '<i class="' . $iconClass . '" style="font-size:16px;color:' . $iconColor . '">&nbsp;</i>';
+        // Must apply `->right()` else icons are displayed on the left of comments/like WallEntryLinks
+        return Icon::get($iconClass)->color($iconColor)->style('font-size:16px')->right();
     }
 
     /**

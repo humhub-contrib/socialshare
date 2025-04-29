@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use humhub\modules\socialshare\assets\Assets;
 use humhub\modules\socialshare\models\ConfigureForm;
 use humhub\modules\socialshare\services\SocialShareService;
@@ -10,8 +11,6 @@ $settings = new ConfigureForm();
 $settings->loadSettings();
 
 $linkOptions = [
-    'data-ui-widget' => 'socialshare.ShareLink',
-    'data-action-click' => 'open',
     'target' => '_blank',
     'rel' => 'noopener noreferrer'
 ];
@@ -21,7 +20,7 @@ $socialShareService = new SocialShareService();
 
 ?>
 
-<span class="shareLinkContainer">
+<?= Html::beginTag('span', $options) ?>
     <div class="pull-right">
         <?php if ($settings->facebook_enabled): ?>
             <?= $socialShareService->createShareLink(
@@ -68,4 +67,4 @@ $socialShareService = new SocialShareService();
             ); ?>
         <?php endif; ?>
     </div>
-</span>
+<?= Html::endTag('span') ?>

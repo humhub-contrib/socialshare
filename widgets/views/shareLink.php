@@ -8,7 +8,6 @@ use humhub\modules\socialshare\services\SocialShareService;
 Assets::register($this);
 
 $settings = new ConfigureForm();
-$settings->loadSettings();
 
 $linkOptions = [
     'target' => '_blank',

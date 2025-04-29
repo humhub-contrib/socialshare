@@ -5,42 +5,37 @@ namespace humhub\modules\socialshare\widgets;
 use Yii;
 use yii\helpers\Url;
 use humhub\modules\socialshare\services\SocialShareService;
+use humhub\widgets\JsWidget;
 
-class ShareLink extends \yii\base\Widget
+class ShareLink extends JsWidget
 {
     /**
      * @var object The content object to be shared
      */
     public $object;
-    
+
+    /**
+     * @inheritdoc
+     */
+    public $jsWidget = 'socialshare.ShareLink';
+
     /**
      * @var SocialShareService
      */
     protected $socialShareService;
 
     /**
-     * Initialize the widget
-     */
-    public function init()
-    {
-        parent::init();
-        $this->socialShareService = new SocialShareService();
-    }
-
-    /**
-     * Run the widget
-     * 
-     * @return string HTML content
+     * @inheritdoc
      */
     public function run()
     {
         $permaLink = Url::to(['/content/perma', 'id' => $this->object->content->id], true);
-        
+
         return $this->render('shareLink', [
             'object' => $this->object,
             'id' => $this->object->getUniqueId(),
             'permalink' => $permaLink,
-            'socialShareService' => $this->socialShareService
+            'socialShareService' => $this->socialShareService,
         ]);
     }
 }

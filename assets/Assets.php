@@ -9,7 +9,11 @@ class Assets extends AssetBundle
 {
     public $sourcePath = '@socialshare/resources';
 
+    public $js = [
+        'js/humhub.socialshare.ShareLink.js'
+    ];
+
     public $publishOptions = [
-        'forceCopy' => 'false',
+        'forceCopy' => 'false'
     ];
 }

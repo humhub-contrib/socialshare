@@ -21,6 +21,15 @@ class ConfigureForm extends Model
     /**
      * @inheritdoc
      */
+    public function init()
+    {
+        parent::init();
+        $this->loadSettings();
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -32,7 +41,7 @@ class ConfigureForm extends Model
     /**
      * Loads settings from the module's configuration
      */
-    public function loadSettings()
+    protected function loadSettings()
     {
         $config = Yii::$app->getModule('socialshare')->settings;
 
@@ -50,9 +59,14 @@ class ConfigureForm extends Model
 
     /**
      * Save settings to the module's configuration
+     * @return bool Whether the save was successful
      */
     public function saveSettings()
     {
+        if (!$this->validate()) {
+            return false;
+        }
+
         $config = Yii::$app->getModule('socialshare')->settings;
 
         $config->set('facebook_enabled', $this->facebook_enabled);
@@ -65,5 +79,7 @@ class ConfigureForm extends Model
         $config->set('custom_linkedin_url', $this->custom_linkedin_url);
         $config->set('custom_line_url', $this->custom_line_url);
         $config->set('custom_bluesky_url', $this->custom_bluesky_url);
+
+        return true;
     }
 }

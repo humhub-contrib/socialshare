@@ -209,8 +209,7 @@ class SocialShareService
         $iconClass = $this->platforms[$platform]['iconClass'];
         $iconColor = $this->platforms[$platform]['iconColor'];
 
-        // Must apply `->right()` else icons are displayed on the left of comments/like WallEntryLinks
-        return Icon::get($iconClass)->color($iconColor)->style('font-size:16px')->right();
+        return Icon::get($iconClass)->color($iconColor)->style('font-size:16px');
     }
 
     /**

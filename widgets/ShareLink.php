@@ -30,7 +30,7 @@ class ShareLink extends JsWidget
      */
     protected function getAttributes()
     {
-        return ['class' => 'shareLinkContainer'];
+        return ['class' => 'shareLinkContainer pull-right'];
     }
 
     /**

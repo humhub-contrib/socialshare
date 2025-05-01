@@ -13,11 +13,11 @@ class SocialShareService
     /**
      * List of supported social media platforms
      */
-    public const PLATFORM_FACEBOOK = 'facebook';
-    public const PLATFORM_TWITTER = 'twitter';
-    public const PLATFORM_LINKEDIN = 'linkedin';
-    public const PLATFORM_LINE = 'line';
-    public const PLATFORM_BLUESKY = 'bluesky';
+    public const PLATFORM_FACEBOOK = 'Facebook';
+    public const PLATFORM_TWITTER = 'Twitter';
+    public const PLATFORM_LINKEDIN = 'Linkedin';
+    public const PLATFORM_LINE = 'Line';
+    public const PLATFORM_BLUESKY = 'Bluesky';
 
     /**
      * Default sharing options
@@ -209,7 +209,7 @@ class SocialShareService
         $iconClass = $this->platforms[$platform]['iconClass'];
         $iconColor = $this->platforms[$platform]['iconColor'];
 
-        return Icon::get($iconClass)->color($iconColor)->style('font-size:16px');
+        return Icon::get($iconClass)->color($iconColor)->style('font-size:16px')->tooltip($platform);
     }
 
     /**

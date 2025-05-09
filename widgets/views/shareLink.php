@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 Assets::register($this);
 ?>
-<div class="shareLinkContainer pull-right">
+<div class="shareLinkContainer float-end">
     <?php
     $option = "
 			var width = 575,

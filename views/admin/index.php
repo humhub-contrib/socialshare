@@ -16,8 +16,8 @@ $this->title = 'Configure Social Share Settings';
         <?= $form->field($model, 'facebook_enabled')->checkbox() ?>
         <?= $form->field($model, 'custom_facebook_url')->textInput() ?>
 
-        <?= $form->field($model, 'twitter_enabled')->checkbox() ?>
-        <?= $form->field($model, 'custom_twitter_url')->textInput() ?>
+        <?= $form->field($model, 'x_enabled')->checkbox() ?>
+        <?= $form->field($model, 'custom_x_url')->textInput() ?>
 
         <?= $form->field($model, 'linkedin_enabled')->checkbox() ?>
         <?= $form->field($model, 'custom_linkedin_url')->textInput() ?>

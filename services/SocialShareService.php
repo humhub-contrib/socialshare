@@ -14,7 +14,7 @@ class SocialShareService
      * List of supported social media platforms
      */
     public const PLATFORM_FACEBOOK = 'Facebook';
-    public const PLATFORM_TWITTER = 'Twitter';
+    public const PLATFORM_X = 'X';
     public const PLATFORM_LINKEDIN = 'Linkedin';
     public const PLATFORM_LINE = 'Line';
     public const PLATFORM_BLUESKY = 'Bluesky';
@@ -44,12 +44,12 @@ class SocialShareService
     {
         $this->platforms = [
             self::PLATFORM_FACEBOOK => [
-                'urlPattern' => 'https://www.facebook.com/sharer/sharer.php?u={url}&description={text}',
+                'urlPattern' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
                 'iconClass' => 'facebook',
                 'iconColor' => '#3a5795',
             ],
-            self::PLATFORM_TWITTER => [
-                'urlPattern' => 'https://twitter.com/intent/tweet?text={text}&url={url}',
+            self::PLATFORM_X => [
+                'urlPattern' => 'https://x.com/intent/post?text={text}&url={url}',
                 'iconClass' => 'twitter',
                 'iconColor' => '#55acee',
             ],
@@ -128,8 +128,8 @@ class SocialShareService
             $enabledPlatforms[] = self::PLATFORM_FACEBOOK;
         }
 
-        if ($config->get('twitter_enabled', true)) {
-            $enabledPlatforms[] = self::PLATFORM_TWITTER;
+        if ($config->get('x_enabled', true)) {
+            $enabledPlatforms[] = self::PLATFORM_X;
         }
 
         if ($config->get('linkedin_enabled', true)) {

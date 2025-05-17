@@ -1,12 +1,10 @@
 Changelog
 =========
 
-1.0.7 (Unreleased)
+1.1.0 (TBA)
 -----------------------
-- Fix #8: Remove extra dot in wall entry bottom links
-- Enh #11: Use PHP CS Fixer
-- Enh: Make buttons configurable
-- ENh: Added BlueSky Share button
+- Enh: #6 Configurable Social Share Options
+- Chg: Twitter to X
 
 1.0.6 (10 March, 2023)
 -----------------------
@@ -20,3 +18,7 @@ Changelog
 1.0.2 (24 August, 2018)
 -----------------------
 - Fix: PHP 7.2 compatibility
+
+
+
+

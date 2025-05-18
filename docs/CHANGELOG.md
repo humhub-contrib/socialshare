@@ -3,6 +3,8 @@ Changelog
 
 1.1.0 (TBA)
 -----------------------
+- Fix #8: Remove extra dot in wall entry bottom links
+- Enh #11: Use PHP CS Fixer
 - Enh: #6 Configurable Social Share Options
 - Chg: Twitter to X
 

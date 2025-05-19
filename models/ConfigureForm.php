@@ -52,7 +52,7 @@ class ConfigureForm extends Model
         $this->bluesky_enabled = $config->get('bluesky_enabled', true);
         $this->custom_facebook_url = $config->get('custom_facebook_url', 'https://www.facebook.com/sharer/sharer.php?u={url}');
         $this->custom_x_url = $config->get('custom_x_url', 'https://x.com/intent/post?text={text}&url={url}');
-        $this->custom_linkedin_url = $config->get('custom_linkedin_url', 'https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}');
+        $this->custom_linkedin_url = $config->get('custom_linkedin_url', 'https://www.linkedin.com/shareArticle?mini=true&url={url}');
         $this->custom_line_url = $config->get('custom_line_url', 'https://social-plugins.line.me/lineit/share?text={text}&url={url}');
         $this->custom_bluesky_url = $config->get('custom_bluesky_url', 'https://bsky.app/intent/compose?text={text}&url={url}');
     }

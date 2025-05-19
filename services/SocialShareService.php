@@ -54,7 +54,7 @@ class SocialShareService
                 'iconColor' => '#55acee',
             ],
             self::PLATFORM_LINKEDIN => [
-                'urlPattern' => 'https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title={text}&url={url}&ro=false',
+                'urlPattern' => 'https://www.linkedin.com/shareArticle?mini=true&url={url}',
                 'iconClass' => 'linkedin-square',
                 'iconColor' => '#0177b5',
             ],

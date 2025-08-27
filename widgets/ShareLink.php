@@ -8,7 +8,6 @@ use yii\helpers\Html;
 
 class ShareLink extends \yii\base\Widget
 {
-
     public $object;
 
     public function run()
@@ -22,5 +21,3 @@ class ShareLink extends \yii\base\Widget
     }
 
 }
-
-?>

@@ -1,13 +1,12 @@
 Changelog
 =========
 
-1.1.0 (Unreleased)
+1.1.0 (August 27, 2025)
 -----------------------
 - Fix #10: Update module resources path
-
-1.0.7 (Unreleased)
------------------------
 - Fix #8: Remove extra dot in wall entry bottom links
+- Enh #11: Use PHP CS Fixer
+- Enh #14: Migration to Bootstrap 5 for HumHub 1.18
 
 1.0.6 (10 March, 2023)
 -----------------------

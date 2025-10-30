@@ -1,12 +1,17 @@
 Changelog
 =========
 
-1.1.0 (TBA)
+1.2.0 (TBA)
 -----------------------
-- Fix #8: Remove extra dot in wall entry bottom links
-- Enh #11: Use PHP CS Fixer
 - Enh: #6 Configurable Social Share Options
 - Chg: Twitter to X
+
+1.1.0 (August 27, 2025)
+-----------------------
+- Fix #10: Update module resources path
+- Fix #8: Remove extra dot in wall entry bottom links
+- Enh #11: Use PHP CS Fixer
+- Enh #14: Migration to Bootstrap 5 for HumHub 1.18
 
 1.0.6 (10 March, 2023)
 -----------------------

@@ -3,7 +3,7 @@
   "name": "Social Share ",
   "description": "Share Post on other Social Networks",
   "humhub": {
-    "minVersion": "1.10"
+    "minVersion": "1.18"
   },
   "homepage": "https://github.com/humhub-contrib/social-share",
   "screenshots": [

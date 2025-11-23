@@ -4,6 +4,7 @@ namespace humhub\modules\socialshare;
 
 use Yii;
 use yii\helpers\Url;
+use humhub\modules\user\helpers\AuthHelper;
 
 class Events
 {
@@ -20,7 +21,10 @@ class Events
     
     public static function onWallEntryLinksInit($event)
     {
-    	$event->sender->addWidget(widgets\ShareLink::class, ['object' => $event->sender->object], ['sortOrder' => 10]);
+        if (!Yii::$app->user->isGuest || Yii::$app->user->identity && AuthHelper::isGuestAccessEnabled())
+        {
+            $event->sender->addWidget(widgets\ShareLink::class, ['object' => $event->sender->object], ['sortOrder' => 10]);
+        }
     }
 
 }

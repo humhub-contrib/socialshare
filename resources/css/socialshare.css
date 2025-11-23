@@ -1,0 +1,101 @@
+/* Container for share links */
+.shareLinkContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Individual share link items */
+.share-link-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Remove default link hover effects */
+.share-link-item:hover {
+    text-decoration: none !important;
+    opacity: 0.75;
+}
+
+.share-link-item:focus {
+    text-decoration: none !important;
+    outline: none;
+    opacity: 0.75;
+}
+
+.share-link-item:active {
+    opacity: 0.6;
+}
+
+/* Icons within share links */
+.share-link-item i,
+.share-link-item .fa {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* Admin panel provider cards */
+.provider-card {
+    border-bottom: 1px solid var(--bs-border-color);
+    padding: 1rem;
+}
+
+.provider-card:last-child {
+    border-bottom: none;
+}
+
+.provider-card .provider-icon {
+    font-size: 2rem;
+    line-height: 1;
+    width: 3rem;
+    text-align: center;
+}
+
+.provider-card .provider-info {
+    flex-grow: 1;
+}
+
+.provider-card .provider-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.provider-card .provider-url {
+    word-break: break-all;
+    font-size: 0.75rem;
+    font-family: var(--bs-font-monospace);
+    color: var(--bs-secondary-color);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767.98px) {
+    .shareLinkContainer {
+        gap: 0.75rem;
+    }
+    
+    .share-link-item i,
+    .share-link-item .fa {
+        font-size: 1.125rem;
+    }
+    
+    .provider-card .provider-actions {
+        flex-direction: column;
+    }
+    
+    .provider-card .provider-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .provider-card .provider-actions {
+        flex-wrap: wrap;
+    }
+}

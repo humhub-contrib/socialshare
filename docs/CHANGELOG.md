@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.1.1 (Unreleased)
+1.2.0 (TBA)
 -----------------------
-- Fix #19: Fix asset bundle
-- Fix #20: Remove deprecations
-- Enh: Automated code refactoring for HumHub 1.18 using Rector
+- Enh: #6 Configurable Social Share Options
+- Chg: Twitter to X
+- Enh: Full Refactor of module
 
 1.1.0 (August 27, 2025)
 -----------------------
@@ -26,3 +26,7 @@ Changelog
 1.0.2 (24 August, 2018)
 -----------------------
 - Fix: PHP 7.2 compatibility
+
+
+
+

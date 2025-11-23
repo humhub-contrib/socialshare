@@ -1,10 +1,18 @@
 Changelog
 =========
 
-1.0.7 (Unreleased)
+1.2.0 (TBA)
 -----------------------
+- Enh: #6 Configurable Social Share Options
+- Chg: Twitter to X
+- Enh: Full Refactor of module
+
+1.1.0 (August 27, 2025)
+-----------------------
+- Fix #10: Update module resources path
 - Fix #8: Remove extra dot in wall entry bottom links
 - Enh #11: Use PHP CS Fixer
+- Enh #14: Migration to Bootstrap 5 for HumHub 1.18
 
 1.0.6 (10 March, 2023)
 -----------------------
@@ -18,3 +26,7 @@ Changelog
 1.0.2 (24 August, 2018)
 -----------------------
 - Fix: PHP 7.2 compatibility
+
+
+
+

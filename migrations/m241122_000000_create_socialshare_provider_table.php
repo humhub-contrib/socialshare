@@ -30,7 +30,7 @@ class m241122_000000_create_socialshare_provider_table extends Migration
             'icon_class' => $this->string(100)->notNull(),
             'icon_color' => $this->string(7)->notNull()->defaultValue('#000000'),
             'enabled' => $this->boolean()->notNull()->defaultValue(1),
-            'sort_order' => $this->integer()->notNull()->defaultValue(0),
+            'sort_order' => $this->integer()->notNull()->defaultValue(100),
             'is_default' => $this->boolean()->notNull()->defaultValue(0),
             'created_at' => $this->dateTime(),
             'created_by' => $this->integer(),

@@ -14,13 +14,6 @@ class Assets extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $css = [
-        'css/socialshare.css',
-    ];
-
-    /**
-     * @inheritdoc
-     */
     public $js = [
         'js/humhub.socialshare.ShareLink.js'
     ];

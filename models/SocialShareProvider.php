@@ -50,7 +50,7 @@ class SocialShareProvider extends ActiveRecord
             ['icon_color', 'default', 'value' => '#000000'],
             [['enabled', 'is_default'], 'boolean'],
             [['sort_order'], 'integer'],
-            [['sort_order'], 'default', 'value' => 0],
+            [['sort_order'], 'default', 'value' => 100],
             [['enabled'], 'default', 'value' => 1],
             [['is_default'], 'default', 'value' => 0],
         ];

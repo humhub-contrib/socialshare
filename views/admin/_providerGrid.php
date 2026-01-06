@@ -56,9 +56,10 @@ use yii\helpers\Url;
         [
             'header' => '&nbsp;',
             'class' => ActionColumn::class,
-            'options' => ['style' => 'width:56px;'],
+            'options' => ['style' => 'width:80px;'],
             'contentOptions' => ['style' => 'text-align:center'],
             'headerOptions' => ['style' => 'text-align:center'],
+            'template' => '<div style="display: flex; gap: 4px; justify-content: center;">{update} {delete}</div>',
             'buttons' => [
                 'view' => function (): void {
                     return;

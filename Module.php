@@ -3,7 +3,6 @@
 namespace humhub\modules\socialshare;
 
 use yii\helpers\Url;
-use humhub\modules\socialshare\drivers\BaseDriver;
 
 class Module extends \humhub\components\Module
 {
@@ -13,4 +12,5 @@ class Module extends \humhub\components\Module
     {
         return Url::to(['/socialshare/admin']);
     }
+
 }

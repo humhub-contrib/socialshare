@@ -2,13 +2,13 @@
 
 namespace humhub\modules\socialshare;
 
-use humhub\modules\socialshare\widgets\ShareLink;
 use Yii;
-use yii\base\WidgetEvent;
 use yii\helpers\Url;
+use humhub\modules\user\helpers\AuthHelper;
 
 class Events
 {
+
     public static function onTopMenuInit($event)
     {
         $event->sender->addItem([
@@ -18,9 +18,13 @@ class Events
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'socialshare'),
         ]);
     }
-
-    public static function onWallEntryLinksAfterRun(WidgetEvent $event)
+    
+    public static function onWallEntryLinksInit($event)
     {
-        $event->result = ShareLink::widget(['object' => $event->sender->object]) . $event->result;
+        if (!Yii::$app->user->isGuest || Yii::$app->user->identity && AuthHelper::isGuestAccessEnabled())
+        {
+            $event->sender->addWidget(widgets\ShareLink::class, ['object' => $event->sender->object], ['sortOrder' => 10]);
+        }
     }
+
 }

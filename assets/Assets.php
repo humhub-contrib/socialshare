@@ -2,7 +2,7 @@
 
 namespace humhub\modules\socialshare\assets;
 
-use yii\web\AssetBundle;
+use humhub\components\assets\AssetBundle;
 
 class Assets extends AssetBundle
 {
@@ -11,7 +11,5 @@ class Assets extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $publishOptions = [
-        'forceCopy' => 'false',
-    ];
+    public $forceCopy = false;
 }

@@ -4,6 +4,7 @@ Changelog
 1.1.1 (Unreleased)
 -----------------------
 - Fix #19: Fix asset bundle
+- Fix #20: Remove deprecations
 
 1.1.0 (August 27, 2025)
 -----------------------

@@ -1,32 +1,45 @@
 <?php
 
-use humhub\modules\socialshare\assets\Assets;
-use yii\helpers\Html;
+use humhub\helpers\Html;
+use humhub\widgets\bootstrap\Link;
 
-Assets::register($this);
+/* @var string $permalink */
+/* @var string $description */
 ?>
-<div class="shareLinkContainer float-end">
-    <?php
-    $option = "
-			var width = 575,
-				height = 400,
-				left = ($(window).width() - width) / 2,
-				top = ($(window).height() - height) / 2,
-				url = this.href;
-				opts = 'status=1' +
-	                ',width=' + width +
-	                ',height=' + height +
-	                ',top=' + top +
-	                ',left=' + left;
+<div class="shareLinkContainer float-end" style="font-size:16px">
+    <?= Link::to()
+        ->icon('facebook')
+        ->link('https://www.facebook.com/sharer/sharer.php?u=' . urlencode($permalink) . '&description=' . urlencode($description))
+        ->cssTextColor('#3a5795') ?>
 
-	            window.open(url, 'share', opts);
+    <?= Link::to()
+        ->icon('twitter')
+        ->link('https://twitter.com/intent/tweet?text=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->cssTextColor('#55acee') ?>
 
-	            return false;
+    <?= Link::to()
+        ->icon('linkedin-square')
+        ->link('https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->cssTextColor('#0177b5') ?>
 
-			";
-    ?>
-    <?= Html::a('<i class="fa fa-facebook" style="font-size:16px;color:#3a5795">&nbsp;</i>', 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode((string)$permalink) . '&description=' . urlencode((string)$object->getContentDescription()), ['onclick' => $option]); ?>
-    <?= Html::a('<i class="fa fa-twitter" style="font-size:16px;color:#55acee">&nbsp;</i>', 'https://twitter.com/intent/tweet?text=' . urlencode((string)$object->getContentDescription()) . '&url=' . urlencode((string)$permalink), ['onclick' => $option]); ?>
-    <?= Html::a('<i class="fa fa-linkedin-square" style="font-size:16px;color:#0177b5">&nbsp;</i>', 'https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title=' . urlencode((string)$object->getContentDescription()) . '&url=' . urlencode((string)$permalink) . '&ro=false', ['onclick' => $option]); ?>
-    <?= Html::a('<i class="fa fa-share" style="font-size:16px;color:#00c300">&nbsp;</i>', 'https://social-plugins.line.me/lineit/share?' . '&text=' . urlencode((string)$object->getContentDescription()) . '&url=' . urlencode((string)$permalink), ['onclick' => $option]); ?>
+    <?= Link::to()
+        ->icon('share')
+        ->link('https://social-plugins.line.me/lineit/share?text=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->cssTextColor('#00c300') ?>
 </div>
+<script <?= Html::nonce() ?>>
+const openSocialSharePopup = (e) => {
+    e.preventDefault();
+
+    const width = 575;
+    const height = 400;
+    const left = Math.round((window.innerWidth - width) / 2);
+    const top = Math.round((window.innerHeight - height) / 2);
+
+    window.open(e.currentTarget.href, 'share', `status=1,width=${width},height=${height},top=${top},left=${left},resizable=1,scrollbars=1`);
+};
+
+document.querySelectorAll('.shareLinkContainer a').forEach(link =>
+    link.addEventListener('click', e => openSocialSharePopup(e))
+);
+</script>

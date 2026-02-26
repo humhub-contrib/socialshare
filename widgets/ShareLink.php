@@ -2,21 +2,22 @@
 
 namespace humhub\modules\socialshare\widgets;
 
-use Yii;
+use humhub\modules\content\components\ContentActiveRecord;
+use yii\base\Widget;
 use yii\helpers\Url;
-use yii\helpers\Html;
 
-class ShareLink extends \yii\base\Widget
+class ShareLink extends Widget
 {
+    /**
+     * @var ContentActiveRecord $object
+     */
     public $object;
 
     public function run()
     {
-        $permaLink = Url::to(['/content/perma', 'id' => $this->object->content->id], true);
         return $this->render('shareLink', [
-            'object' => $this->object,
-            'id' => $this->object->getUniqueId(),
-            'permalink' => $permaLink,
+            'permalink' => Url::to(['/content/perma', 'id' => $this->object->content->id], true),
+            'description' => (string)$this->object->getContentDescription(),
         ]);
     }
 

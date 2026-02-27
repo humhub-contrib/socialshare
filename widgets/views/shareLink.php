@@ -9,22 +9,22 @@ use humhub\widgets\bootstrap\Link;
 <div class="shareLinkContainer float-end" style="font-size:16px">
     <?= Link::to()
         ->icon('facebook')
-        ->link('https://www.facebook.com/sharer/sharer.php?u=' . urlencode($permalink) . '&description=' . urlencode($description))
+        ->link('https://www.facebook.com/sharer/sharer.php?u=' . urlencode((string) $permalink) . '&description=' . urlencode((string) $description))
         ->cssTextColor('#3a5795') ?>
 
     <?= Link::to()
         ->icon('twitter')
-        ->link('https://twitter.com/intent/tweet?text=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->link('https://twitter.com/intent/tweet?text=' . urlencode((string) $description) . '&url=' . urlencode((string) $permalink))
         ->cssTextColor('#55acee') ?>
 
     <?= Link::to()
         ->icon('linkedin-square')
-        ->link('https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->link('https://www.linkedin.com/shareArticle?summary=&mini=true&source=&title=' . urlencode((string) $description) . '&url=' . urlencode((string) $permalink))
         ->cssTextColor('#0177b5') ?>
 
     <?= Link::to()
         ->icon('share')
-        ->link('https://social-plugins.line.me/lineit/share?text=' . urlencode($description) . '&url=' . urlencode($permalink))
+        ->link('https://social-plugins.line.me/lineit/share?text=' . urlencode((string) $description) . '&url=' . urlencode((string) $permalink))
         ->cssTextColor('#00c300') ?>
 </div>
 <script <?= Html::nonce() ?>>

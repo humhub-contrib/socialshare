@@ -5,6 +5,7 @@ Changelog
 -----------------------
 - Fix #19: Fix asset bundle
 - Fix #20: Remove deprecations
+- Enh: Automated code refactoring for HumHub 1.18 using Rector
 
 1.1.0 (August 27, 2025)
 -----------------------

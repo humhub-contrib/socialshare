@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use humhub\helpers\Html;
 use humhub\modules\socialshare\assets\Assets;
 use humhub\modules\socialshare\helpers\SocialShareHelper;
 
@@ -21,4 +21,5 @@ $linkOptions = [
 
 <?= Html::beginTag('span', $options) ?>
     <?= SocialShareHelper::renderShareLinks($object, $permalink, $linkOptions) ?>
+
 <?= Html::endTag('span') ?>

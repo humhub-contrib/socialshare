@@ -1,10 +1,12 @@
 <?php
 
-use humhub\helpers\Html;
+use humhub\modules\socialshare\assets\Assets;
 use humhub\widgets\bootstrap\Link;
 
 /* @var string $permalink */
 /* @var string $description */
+
+Assets::register($this);
 ?>
 <div class="shareLinkContainer float-end" style="font-size:16px">
     <?= Link::to(null)
@@ -27,19 +29,3 @@ use humhub\widgets\bootstrap\Link;
         ->link('https://social-plugins.line.me/lineit/share?text=' . urlencode((string) $description) . '&url=' . urlencode((string) $permalink))
         ->cssTextColor('#00c300') ?>
 </div>
-<script <?= Html::nonce() ?>>
-const openSocialSharePopup = (e) => {
-    e.preventDefault();
-
-    const width = 575;
-    const height = 400;
-    const left = Math.round((window.innerWidth - width) / 2);
-    const top = Math.round((window.innerHeight - height) / 2);
-
-    window.open(e.currentTarget.href, 'share', `status=1,width=${width},height=${height},top=${top},left=${left},resizable=1,scrollbars=1`);
-};
-
-document.querySelectorAll('.shareLinkContainer a').forEach(link =>
-    link.addEventListener('click', e => openSocialSharePopup(e))
-);
-</script>

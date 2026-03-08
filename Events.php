@@ -9,6 +9,10 @@ class Events
 {
     public static function onWallEntryLinksAfterRun(WidgetEvent $event)
     {
-        $event->result = ShareLink::widget(['object' => $event->sender->object]) . $event->result;
+        if (!Yii::$app->user->isGuest || Yii::$app->user->identity && AuthHelper::isGuestAccessEnabled())
+        {
+            $event->sender->addWidget(widgets\ShareLink::class, ['object' => $event->sender->object], ['sortOrder' => 10]);
+        }
     }
+
 }

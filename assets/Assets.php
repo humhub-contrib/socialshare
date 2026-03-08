@@ -1,8 +1,13 @@
 <?php
+/**
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
 
 namespace humhub\modules\socialshare\assets;
 
-use yii\web\AssetBundle;
+use humhub\components\assets\AssetBundle;
 
 class Assets extends AssetBundle
 {

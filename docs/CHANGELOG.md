@@ -7,6 +7,12 @@ Changelog
 - Chg: Twitter to X
 - Enh: Full Refactor of module
 
+1.1.1 (Unreleased)
+-----------------------
+- Fix #19: Fix asset bundle
+- Fix #20: Remove deprecations
+- Enh: Automated code refactoring for HumHub 1.18 using Rector
+
 1.1.0 (August 27, 2025)
 -----------------------
 - Fix #10: Update module resources path

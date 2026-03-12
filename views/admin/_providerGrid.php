@@ -1,11 +1,11 @@
 <?php
 
 use humhub\helpers\Html;
-use humhub\modules\ui\icon\widgets\Icon;
 use humhub\modules\admin\grid\CheckboxColumn;
+use humhub\modules\ui\icon\widgets\Icon;
 use humhub\widgets\bootstrap\Button;
-use humhub\widgets\GridView;
 use humhub\widgets\form\ActiveForm;
+use humhub\widgets\GridView;
 use yii\data\ArrayDataProvider;
 use yii\grid\ActionColumn;
 use yii\helpers\Url;
@@ -15,9 +15,12 @@ use yii\helpers\Url;
 ?>
 
 <?= Button::success(Yii::t('SocialshareModule.base', 'Add Provider'))
-    ->icon('add')->sm()->link(Url::to(['create']))->right() ?>
+    ->icon('add')
+    ->sm()
+    ->link(Url::to(['create']))
+    ->right() ?>
 
-<br/>
+<br>
 
 <?= GridView::widget([
     'dataProvider' => new ArrayDataProvider(['allModels' => $providers, 'pagination' => ['pageSize' => 0]]),
@@ -29,13 +32,11 @@ use yii\helpers\Url;
             'format' => 'raw',
             'options' => ['style' => 'width: 50px;'],
             'contentOptions' => ['style' => 'text-align:center; font-size: 1.5rem; line-height: 1;'],
-            'content' => function ($model) {
-                return Icon::get($model->icon_class)->color($model->icon_color);
-            }
+            'content' => static fn($model) => Icon::get($model->icon_class)->color($model->icon_color),
         ],
         [
             'attribute' => 'name',
-            'content' => fn($model, $key, $index, $that) => Html::encode($that->getDataCellValue($model, $key, $index))
+            'content' => static fn($model, $key, $index, $column) => Html::encode($column->getDataCellValue($model, $key, $index)),
         ],
         [
             'class' => CheckboxColumn::class,
@@ -51,33 +52,26 @@ use yii\helpers\Url;
             'options' => ['style' => 'width: fit-content;'],
             'headerOptions' => ['style' => 'word-break: keep-all; hyphens: none;'],
         ],
-        [
-            'attribute' => 'sort_order',
-        ],
+        ['attribute' => 'sort_order'],
         [
             'header' => '&nbsp;',
             'class' => ActionColumn::class,
             'options' => ['style' => 'width:80px;'],
             'contentOptions' => ['style' => 'text-align:center'],
             'headerOptions' => ['style' => 'text-align:center'],
-            'template' => '<div style="display: flex; gap: 4px; justify-content: center;">{update} {delete}</div>',
+            'template' => '<div style="display:flex; gap:4px; justify-content:center;">{update} {delete}</div>',
             'buttons' => [
-                'view' => function (): void {
-                    return;
-                },
-                'delete' => function($url, $model) {
+                'delete' => static function ($url, $model) {
                     if ($model->is_default) {
                         return '';
                     }
-                    
-                    $formId = 'delete-form-' . $model->id;
+
                     ob_start();
-                    $form = ActiveForm::begin([
-                        'id' => $formId,
+                    ActiveForm::begin([
                         'action' => Url::to(['delete', 'id' => $model->id]),
                         'method' => 'post',
                         'acknowledge' => true,
-                        'options' => ['style' => 'display: inline;']
+                        'options' => ['style' => 'display:inline;'],
                     ]);
                     echo Button::danger()
                         ->icon('trash')
@@ -87,14 +81,17 @@ use yii\helpers\Url;
                             Yii::t('SocialshareModule.base', 'Delete Provider'),
                             Yii::t('SocialshareModule.base', 'Are you sure you want to delete this provider?'),
                             Yii::t('base', 'Delete'),
-                            Yii::t('base', 'Cancel')
+                            Yii::t('base', 'Cancel'),
                         );
                     ActiveForm::end();
+
                     return ob_get_clean();
                 },
-                'update' => fn($url, $model) =>
-                    Button::primary()->icon('edit')->link(Url::to(['edit', 'id' => $model->id]))->sm(),
+                'update' => static fn($url, $model) => Button::primary()
+                    ->icon('edit')
+                    ->link(Url::to(['edit', 'id' => $model->id]))
+                    ->sm(),
             ],
         ],
-    ]
-]);
+    ],
+]); ?>

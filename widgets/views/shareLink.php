@@ -15,6 +15,7 @@ $linkOptions = [
     'target' => '_blank',
     'rel' => 'noopener noreferrer',
     'class' => 'share-link-item',
+    'data-pjax-prevent' => 1,
 ];
 
 ?>

@@ -3,19 +3,10 @@
 use humhub\components\Migration;
 use humhub\modules\socialshare\drivers\BaseDriver;
 
-/**
- * Handles the creation of table `socialshare_provider`.
- */
 class m241122_000000_create_socialshare_provider_table extends Migration
 {
-    /**
-     * @inheritdoc
-     */
     protected string $table = 'socialshare_provider';
 
-    /**
-     * @inheritdoc
-     */
     public function safeUp()
     {
         if ($this->db->schema->getTableSchema($this->table, true) !== null) {
@@ -38,22 +29,23 @@ class m241122_000000_create_socialshare_provider_table extends Migration
             'updated_by' => $this->integer(),
         ]);
 
-        $this->safeCreateIndex(
-            'idx-socialshare_provider-enabled',
-            $this->table,
-            'enabled'
-        );
-
-        $this->safeCreateIndex(
-            'idx-socialshare_provider-sort_order',
-            $this->table,
-            'sort_order'
-        );
-
+        $this->safeCreateIndex('idx-socialshare_provider-enabled', $this->table, 'enabled');
+        $this->safeCreateIndex('idx-socialshare_provider-sort_order', $this->table, 'sort_order');
         $this->safeAddForeignKeyCreatedBy();
         $this->safeAddForeignKeyUpdatedBy();
 
         BaseDriver::initializeDefaults();
+
+        return true;
+    }
+
+    public function safeDown()
+    {
+        $this->safeDropForeignKey(sprintf('fk-%s-%s', $this->table, 'updated_by'), $this->table);
+        $this->safeDropForeignKey(sprintf('fk-%s-%s', $this->table, 'created_by'), $this->table);
+        $this->safeDropIndex('idx-socialshare_provider-sort_order', $this->table);
+        $this->safeDropIndex('idx-socialshare_provider-enabled', $this->table);
+        $this->safeDropTable($this->table);
 
         return true;
     }

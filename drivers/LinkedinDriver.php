@@ -10,7 +10,7 @@ class LinkedinDriver extends BaseDriver
     /**
      * @inheritdoc
      */
-    public static function getDefaultConfig()
+    public static function getDefaultConfig(): ?array
     {
         return [
             'provider_id' => 'linkedin',

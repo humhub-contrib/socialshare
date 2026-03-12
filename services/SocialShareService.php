@@ -2,41 +2,24 @@
 
 namespace humhub\modules\socialshare\services;
 
-use Yii;
-use yii\helpers\Html;
-use humhub\modules\socialshare\models\SocialShareProvider;
 use humhub\modules\socialshare\drivers\BaseDriver;
+use humhub\modules\socialshare\models\SocialShareProvider;
+use yii\helpers\Html;
 
-/**
- * SocialShareService handles business logic for social sharing
- */
 class SocialShareService
 {
-    /**
-     * Default HTML options for share links
-     * 
-     * @var array
-     */
-    protected $defaultOptions = [
+    protected array $defaultOptions = [
         'class' => 'share-link',
         'target' => '_blank',
-        'rel' => 'noopener noreferrer'
+        'rel' => 'noopener noreferrer',
     ];
 
     /**
-     * Cache for driver instances
-     * 
      * @var BaseDriver[]
      */
-    protected $drivers = [];
+    protected array $drivers = [];
 
-    /**
-     * Get driver instance for a provider
-     * 
-     * @param SocialShareProvider $provider
-     * @return BaseDriver
-     */
-    protected function getDriver(SocialShareProvider $provider)
+    protected function getDriver(SocialShareProvider $provider): BaseDriver
     {
         if (!isset($this->drivers[$provider->id])) {
             $this->drivers[$provider->id] = $this->createDriver($provider);
@@ -45,13 +28,7 @@ class SocialShareService
         return $this->drivers[$provider->id];
     }
 
-    /**
-     * Create driver instance based on provider
-     * 
-     * @param SocialShareProvider $provider
-     * @return BaseDriver
-     */
-    protected function createDriver(SocialShareProvider $provider)
+    protected function createDriver(SocialShareProvider $provider): BaseDriver
     {
         $driverClass = $provider->getDriverClass();
 
@@ -59,69 +36,33 @@ class SocialShareService
     }
 
     /**
-     * Get all enabled providers
-     * 
      * @return SocialShareProvider[]
      */
-    public function getEnabledProviders()
+    public function getEnabledProviders(): array
     {
         return SocialShareProvider::getEnabled();
     }
 
-    /**
-     * Get sharing URL for a specific provider
-     * 
-     * @param SocialShareProvider $provider
-     * @param string $permalink
-     * @param string $text
-     * @param array $additionalParams
-     * @return string
-     */
-    public function getShareUrl(SocialShareProvider $provider, $permalink, $text = '', $additionalParams = [])
+    public function getShareUrl(SocialShareProvider $provider, string $permalink, string $text = '', array $additionalParams = []): string
+    {
+        return $this->getDriver($provider)->getShareUrl($permalink, $text, $additionalParams);
+    }
+
+    public function createShareLink(SocialShareProvider $provider, string $permalink, string $text = '', array $options = []): string
     {
         $driver = $this->getDriver($provider);
 
-        return $driver->getShareUrl($permalink, $text, $additionalParams);
+        return Html::a($driver->getIcon(), $driver->getShareUrl($permalink, $text), array_merge($this->defaultOptions, $options));
     }
 
-    /**
-     * Create a share link HTML element for a provider
-     * 
-     * @param SocialShareProvider $provider
-     * @param string $permalink
-     * @param string $text
-     * @param array $options HTML options
-     * @return string
-     */
-    public function createShareLink(SocialShareProvider $provider, $permalink, $text = '', $options = [])
+    public function renderShareLinks(object $object, string $permalink, array $options = []): string
     {
-        $driver = $this->getDriver($provider);
-        $options = array_merge($this->defaultOptions, $options);
-
-        $url = $driver->getShareUrl($permalink, $text);
-        $icon = $driver->getIcon();
-
-        return Html::a($icon, $url, $options);
-    }
-
-    /**
-     * Render all enabled share links for a content object
-     * 
-     * @param object $object Content object with getContentDescription() method
-     * @param string $permalink
-     * @param array $options HTML options
-     * @return string
-     */
-    public function renderShareLinks($object, $permalink, $options = [])
-    {
-        $description = method_exists($object, 'getContentDescription') 
-            ? $object->getContentDescription() 
+        $description = method_exists($object, 'getContentDescription')
+            ? (string) $object->getContentDescription()
             : '';
 
         $links = [];
-        $providers = $this->getEnabledProviders();
-
-        foreach ($providers as $provider) {
+        foreach ($this->getEnabledProviders() as $provider) {
             $links[] = $this->createShareLink($provider, $permalink, $description, $options);
         }
 

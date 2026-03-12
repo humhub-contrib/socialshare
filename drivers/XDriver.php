@@ -10,7 +10,7 @@ class XDriver extends BaseDriver
     /**
      * @inheritdoc
      */
-    public static function getDefaultConfig()
+    public static function getDefaultConfig(): ?array
     {
         return [
             'provider_id' => 'x',

@@ -2,63 +2,53 @@
 
 namespace humhub\modules\socialshare\models;
 
-use Yii;
 use humhub\components\ActiveRecord;
+use Yii;
 
 /**
- * SocialShareProvider ActiveRecord
- * 
  * @property int $id
- * @property string $provider_id Unique identifier for the provider
- * @property string $name Display name
- * @property string $url_pattern URL pattern with placeholders
- * @property string $icon_class CSS icon class
- * @property string $icon_color Hex color code
- * @property int $enabled Whether the provider is enabled
- * @property int $sort_order Display order
- * @property int $is_default Whether this is a default provider
- * @property string $created_at
- * @property int $created_by
- * @property string $updated_at
- * @property int $updated_by
+ * @property string $provider_id
+ * @property string $name
+ * @property string $url_pattern
+ * @property string $icon_class
+ * @property string $icon_color
+ * @property bool $enabled
+ * @property int $sort_order
+ * @property bool $is_default
  */
 class SocialShareProvider extends ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'socialshare_provider';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
+            [['provider_id', 'name', 'url_pattern', 'icon_class', 'icon_color'], 'trim'],
+            ['provider_id', 'filter', 'filter' => 'strtolower'],
             [['provider_id', 'name', 'url_pattern', 'icon_class'], 'required'],
             ['provider_id', 'string', 'max' => 50],
             ['provider_id', 'unique'],
             ['provider_id', 'match', 'pattern' => '/^[a-z0-9_]+$/', 'message' => Yii::t('SocialshareModule.base', 'Provider ID can only contain lowercase letters, numbers, and underscores.')],
-            [['name'], 'string', 'max' => 100],
-            [['url_pattern'], 'string', 'max' => 500],
-            [['icon_class'], 'string', 'max' => 100],
-            [['icon_color'], 'string', 'max' => 7],
+            ['name', 'string', 'max' => 100],
+            ['url_pattern', 'string', 'max' => 500],
+            ['url_pattern', 'match', 'pattern' => '/^https?:\/\//i', 'message' => Yii::t('SocialshareModule.base', 'URL pattern must start with http:// or https://.')],
+            ['url_pattern', 'validateUrlPattern'],
+            ['icon_class', 'string', 'max' => 100],
+            ['icon_class', 'match', 'pattern' => '/^[a-z0-9-]+$/i', 'message' => Yii::t('SocialshareModule.base', 'Icon class can only contain letters, numbers and dashes.')],
+            ['icon_color', 'string', 'max' => 7],
             ['icon_color', 'match', 'pattern' => '/^#[0-9A-Fa-f]{6}$/', 'message' => Yii::t('SocialshareModule.base', 'Icon color must be a valid hex color code.')],
             ['icon_color', 'default', 'value' => '#000000'],
             [['enabled', 'is_default'], 'boolean'],
-            [['sort_order'], 'integer'],
-            [['sort_order'], 'default', 'value' => 100],
-            [['enabled'], 'default', 'value' => 1],
-            [['is_default'], 'default', 'value' => 0],
+            ['sort_order', 'integer'],
+            ['sort_order', 'default', 'value' => 100],
+            ['enabled', 'default', 'value' => true],
+            ['is_default', 'default', 'value' => false],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -75,45 +65,32 @@ class SocialShareProvider extends ActiveRecord
     }
 
     /**
-     * Get all enabled providers ordered by sort_order
-     * 
      * @return static[]
      */
-    public static function getEnabled()
+    public static function getEnabled(): array
     {
         return static::find()
-            ->where(['enabled' => 1])
+            ->where(['enabled' => true])
             ->orderBy(['sort_order' => SORT_ASC, 'name' => SORT_ASC])
             ->all();
     }
 
-    /**
-     * Get provider by provider_id
-     * 
-     * @param string $providerId
-     * @return static|null
-     */
-    public static function findByProviderId($providerId)
+    public static function findByProviderId(string $providerId): ?self
     {
         return static::findOne(['provider_id' => $providerId]);
     }
 
     /**
-     * Get all default providers
-     * 
      * @return static[]
      */
-    public static function getDefaults()
+    public static function getDefaults(): array
     {
         return static::find()
-            ->where(['is_default' => 1])
+            ->where(['is_default' => true])
             ->orderBy(['sort_order' => SORT_ASC])
             ->all();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function beforeDelete()
     {
         if (!parent::beforeDelete()) {
@@ -128,19 +105,35 @@ class SocialShareProvider extends ActiveRecord
         return true;
     }
 
-    /**
-     * Get the driver class for this provider
-     * 
-     * @return string
-     */
-    public function getDriverClass()
+    public function beforeSave($insert)
     {
-        $customDriverClass = 'humhub\\modules\\socialshare\\drivers\\' . ucfirst($this->provider_id) . 'Driver';
-        
-        if (class_exists($customDriverClass)) {
-            return $customDriverClass;
+        if (!$insert) {
+            $this->provider_id = (string) $this->getOldAttribute('provider_id');
+            $this->is_default = (bool) $this->getOldAttribute('is_default');
         }
 
-        return 'humhub\\modules\\socialshare\\drivers\\BaseDriver';
+        return parent::beforeSave($insert);
+    }
+
+    public function getDriverClass(): string
+    {
+        $driverMap = [
+            'bluesky' => 'BlueSkyDriver',
+        ];
+        $driverName = $driverMap[$this->provider_id]
+            ?? str_replace(' ', '', ucwords(str_replace('_', ' ', $this->provider_id))) . 'Driver';
+        $driverClass = 'humhub\\modules\\socialshare\\drivers\\' . $driverName;
+
+        return class_exists($driverClass) ? $driverClass : 'humhub\\modules\\socialshare\\drivers\\BaseDriver';
+    }
+
+    public function validateUrlPattern(string $attribute): void
+    {
+        if (
+            strpos($this->$attribute, '{url}') === false
+            && strpos($this->$attribute, '{text}') === false
+        ) {
+            $this->addError($attribute, Yii::t('SocialshareModule.base', 'URL pattern must contain at least one placeholder: {url} or {text}.'));
+        }
     }
 }

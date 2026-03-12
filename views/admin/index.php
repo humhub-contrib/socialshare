@@ -1,18 +1,19 @@
 <?php
 
+use humhub\helpers\Html;
 use humhub\modules\ui\icon\widgets\Icon;
+use humhub\widgets\bootstrap\Button;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $providers humhub\modules\socialshare\models\SocialShareProvider[] */
 
 $this->title = Yii::t('SocialshareModule.base', 'Share Providers');
-
 ?>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <strong><?= $this->title ?></strong>
+        <strong><?= Html::encode($this->title) ?></strong>
     </div>
 
     <div class="panel-body">
@@ -26,8 +27,8 @@ $this->title = Yii::t('SocialshareModule.base', 'Share Providers');
                 <?= Icon::get('info-circle') ?>
                 <?= Yii::t('SocialshareModule.base', 'No providers configured yet. Click "Add Provider" to create one.') ?>
             </div>
-            
-            <?= humhub\widgets\bootstrap\Button::success(Yii::t('SocialshareModule.base', 'Add Provider'))
+
+            <?= Button::success(Yii::t('SocialshareModule.base', 'Add Provider'))
                 ->icon('add')
                 ->link(Url::to(['create']))
                 ->sm() ?>

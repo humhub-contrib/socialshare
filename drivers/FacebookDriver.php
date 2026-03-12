@@ -16,7 +16,7 @@ class FacebookDriver extends BaseDriver
      *
      * @inheritdoc
      */
-    protected function buildShareUrl($permalink, $text)
+    protected function buildShareUrl(string $permalink, string $text): string
     {
         // Only the URL can be shared; Facebook ignores share text
         $replacements = [
@@ -37,7 +37,7 @@ class FacebookDriver extends BaseDriver
      *
      * @inheritdoc
      */
-    public function hasCustomLogic()
+    public function hasCustomLogic(): bool
     {
         return true;
     }
@@ -45,7 +45,7 @@ class FacebookDriver extends BaseDriver
     /**
      * @inheritdoc
      */
-    public static function getDefaultConfig()
+    public static function getDefaultConfig(): ?array
     {
         return [
             'provider_id' => 'facebook',

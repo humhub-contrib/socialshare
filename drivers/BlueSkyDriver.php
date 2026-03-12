@@ -2,44 +2,23 @@
 
 namespace humhub\modules\socialshare\drivers;
 
-/**
- * BlueSky driver with custom share URL logic
- * BlueSky combines text and URL into a single text parameter
- */
-class BlueskyDriver extends BaseDriver
+class BlueSkyDriver extends BaseDriver
 {
-    /**
-     * @inheritdoc
-     */
-    protected function buildShareUrl($permalink, $text)
+    protected function buildShareUrl(string $permalink, string $text): string
     {
-        // BlueSky combines text and URL in the text parameter
-        $combinedText = trim($text . ' ' . $permalink);
-
-        $replacements = [
-            '{url}' => '',
-            '{text}' => urlencode($combinedText),
-        ];
-
         return str_replace(
-            array_keys($replacements),
-            array_values($replacements),
-            $this->provider->url_pattern
+            ['{url}', '{text}'],
+            ['', urlencode(trim($text . ' ' . $permalink))],
+            $this->provider->url_pattern,
         );
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function hasCustomLogic()
+    public function hasCustomLogic(): bool
     {
         return true;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function getDefaultConfig()
+    public static function getDefaultConfig(): ?array
     {
         return [
             'provider_id' => 'bluesky',
@@ -47,7 +26,7 @@ class BlueskyDriver extends BaseDriver
             'url_pattern' => 'https://bsky.app/intent/compose?text={text}',
             'icon_class' => 'share',
             'icon_color' => '#4f9bd9',
-            'sort_order' => 5,
+            'sort_order' => 500,
         ];
     }
 }

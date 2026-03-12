@@ -18,7 +18,7 @@ class SocialShareHelper
 
     /**
      * Get the service instance
-     * 
+     *
      * @return SocialShareService
      */
     protected static function getService()
@@ -32,7 +32,7 @@ class SocialShareHelper
 
     /**
      * Render share links for a content object
-     * 
+     *
      * @param object $object Content object
      * @param string $permalink
      * @param array $options
@@ -45,7 +45,7 @@ class SocialShareHelper
 
     /**
      * Get share URL for a specific provider
-     * 
+     *
      * @param string $providerId Provider identifier
      * @param string $permalink
      * @param string $text
@@ -65,7 +65,7 @@ class SocialShareHelper
 
     /**
      * Create a single share link
-     * 
+     *
      * @param string $providerId Provider identifier
      * @param string $permalink
      * @param string $text
@@ -85,7 +85,7 @@ class SocialShareHelper
 
     /**
      * Check if a provider is enabled
-     * 
+     *
      * @param string $providerId
      * @return bool
      */
@@ -98,7 +98,7 @@ class SocialShareHelper
 
     /**
      * Get all enabled provider IDs
-     * 
+     *
      * @return string[]
      */
     public static function getEnabledProviderIds()
@@ -110,7 +110,7 @@ class SocialShareHelper
 
     /**
      * Initialize default providers from driver classes
-     * 
+     *
      * @return void
      */
     public static function initializeDefaultProviders()

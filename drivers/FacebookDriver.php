@@ -53,7 +53,7 @@ class FacebookDriver extends BaseDriver
             'url_pattern' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
             'icon_class' => 'facebook',
             'icon_color' => '#1877F2',
-            'sort_order' => 1,
+            'sort_order' => 100,
         ];
     }
 }

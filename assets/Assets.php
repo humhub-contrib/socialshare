@@ -7,7 +7,7 @@
 
 namespace humhub\modules\socialshare\assets;
 
-use humhub\components\assets\AssetBundle;
+use yii\web\AssetBundle;
 
 class Assets extends AssetBundle
 {

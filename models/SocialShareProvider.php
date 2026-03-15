@@ -3,6 +3,7 @@
 namespace humhub\modules\socialshare\models;
 
 use Yii;
+use yii\helpers\Inflector;
 use humhub\components\ActiveRecord;
 
 /**
@@ -135,12 +136,13 @@ class SocialShareProvider extends ActiveRecord
      */
     public function getDriverClass()
     {
-        $customDriverClass = 'humhub\\modules\\socialshare\\drivers\\' . ucfirst($this->provider_id) . 'Driver';
-        
+        $className = \yii\helpers\Inflector::id2camel($this->provider_id, '_') . 'Driver';
+        $customDriverClass = 'humhub\\modules\\socialshare\\drivers\\' . $className;
+
         if (class_exists($customDriverClass)) {
             return $customDriverClass;
         }
 
-        return 'humhub\\modules\\socialshare\\drivers\\BaseDriver';
+        return \humhub\modules\socialshare\drivers\BaseDriver::class;
     }
 }

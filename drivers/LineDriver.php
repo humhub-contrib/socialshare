@@ -18,7 +18,7 @@ class LineDriver extends BaseDriver
             'url_pattern' => 'https://social-plugins.line.me/lineit/share?text={text}&url={url}',
             'icon_class' => 'share',
             'icon_color' => '#00c300',
-            'sort_order' => 4,
+            'sort_order' => 400,
         ];
     }
 }

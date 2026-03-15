@@ -18,7 +18,7 @@ class LinkedinDriver extends BaseDriver
             'url_pattern' => 'https://www.linkedin.com/shareArticle?mini=true&url={url}',
             'icon_class' => 'linkedin-square',
             'icon_color' => '#0177b5',
-            'sort_order' => 3,
+            'sort_order' => 300,
         ];
     }
 }

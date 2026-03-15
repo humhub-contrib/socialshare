@@ -47,7 +47,7 @@ class BlueskyDriver extends BaseDriver
             'url_pattern' => 'https://bsky.app/intent/compose?text={text}',
             'icon_class' => 'share',
             'icon_color' => '#4f9bd9',
-            'sort_order' => 5,
+            'sort_order' => 500,
         ];
     }
 }

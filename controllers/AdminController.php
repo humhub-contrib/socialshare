@@ -12,6 +12,20 @@ use yii\web\NotFoundHttpException;
  */
 class AdminController extends Controller
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => \yii\filters\VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
+                    'toggle' => ['POST'],
+                    'reorder' => ['POST'],
+                ],
+            ],
+        ]);
+    }
+
     /**
      * List all providers
      */

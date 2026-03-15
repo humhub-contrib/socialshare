@@ -18,7 +18,7 @@ class XDriver extends BaseDriver
             'url_pattern' => 'https://x.com/intent/post?text={text}&url={url}',
             'icon_class' => 'twitter',
             'icon_color' => '#55acee',
-            'sort_order' => 2,
+            'sort_order' => 200,
         ];
     }
 }

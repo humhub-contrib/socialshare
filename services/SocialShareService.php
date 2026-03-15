@@ -114,9 +114,9 @@ class SocialShareService
      */
     public function renderShareLinks($object, $permalink, $options = [])
     {
-        $description = method_exists($object, 'getContentDescription') 
-            ? $object->getContentDescription() 
-            : '';
+        $description = method_exists($object, 'getContentDescription')
+        ? (string)$object->getContentDescription()
+        : '';
 
         $links = [];
         $providers = $this->getEnabledProviders();

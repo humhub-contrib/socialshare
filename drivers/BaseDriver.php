@@ -131,7 +131,7 @@ class BaseDriver
      */
     public static function initializeDefaults()
     {
-        $driverPath = Yii::getAlias('@humhub/modules/socialshare/drivers');
+        $driverPath = Yii::getAlias('@socialshare/drivers');
         $driverFiles = glob($driverPath . '/*Driver.php');
 
         foreach ($driverFiles as $file) {

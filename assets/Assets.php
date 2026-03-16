@@ -22,8 +22,4 @@ class Assets extends AssetBundle
     public $js = [
         'js/humhub.socialshare.ShareLink.js'
     ];
-
-    public $publishOptions = [
-        'forceCopy' => 'false'
-    ];
 }

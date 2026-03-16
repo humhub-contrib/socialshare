@@ -64,7 +64,7 @@ class AdminController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->forcePostRequest()
+        $this->forcePostRequest();
         $model = $this->findModel($id);
 
         if ($model->is_default) {
@@ -85,7 +85,7 @@ class AdminController extends Controller
      */
     public function actionToggle($id)
     {
-        $this->forcePostRequest()
+        $this->forcePostRequest();
         $model = $this->findModel($id);
         $model->enabled = !$model->enabled;
 
@@ -102,7 +102,7 @@ class AdminController extends Controller
      */
     public function actionReorder()
     {
-        $this->forcePostRequest()
+        $this->forcePostRequest();
         $order = Yii::$app->request->post('order', []);
 
         foreach ($order as $index => $id) {

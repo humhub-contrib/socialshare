@@ -12,20 +12,6 @@ use yii\web\NotFoundHttpException;
  */
 class AdminController extends Controller
 {
-    public function behaviors()
-    {
-        return array_merge(parent::behaviors(), [
-            'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
-                'actions' => [
-                    'delete' => ['POST'],
-                    'toggle' => ['POST'],
-                    'reorder' => ['POST'],
-                ],
-            ],
-        ]);
-    }
-
     /**
      * List all providers
      */
@@ -78,6 +64,7 @@ class AdminController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->forcePostRequest()
         $model = $this->findModel($id);
 
         if ($model->is_default) {
@@ -98,6 +85,7 @@ class AdminController extends Controller
      */
     public function actionToggle($id)
     {
+        $this->forcePostRequest()
         $model = $this->findModel($id);
         $model->enabled = !$model->enabled;
 
@@ -114,6 +102,7 @@ class AdminController extends Controller
      */
     public function actionReorder()
     {
+        $this->forcePostRequest()
         $order = Yii::$app->request->post('order', []);
 
         foreach ($order as $index => $id) {

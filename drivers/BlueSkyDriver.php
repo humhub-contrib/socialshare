@@ -6,7 +6,7 @@ namespace humhub\modules\socialshare\drivers;
  * BlueSky driver with custom share URL logic
  * BlueSky combines text and URL into a single text parameter
  */
-class BlueskyDriver extends BaseDriver
+class BlueSkyDriver extends BaseDriver
 {
     /**
      * @inheritdoc

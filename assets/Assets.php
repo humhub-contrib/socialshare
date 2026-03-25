@@ -7,7 +7,7 @@
 
 namespace humhub\modules\socialshare\assets;
 
-use humhub\components\assets\AssetBundle;
+use yii\web\AssetBundle;
 
 class Assets extends AssetBundle
 {
@@ -20,6 +20,6 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/humhub.socialshare.js',
+        'js/humhub.socialshare.ShareLink.js'
     ];
 }

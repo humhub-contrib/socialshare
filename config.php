@@ -9,10 +9,6 @@ return [
     'class' => Module::class,
     'namespace' => 'humhub\modules\socialshare',
     'events' => [
-        [
-            'class' => WallEntryLinks::class,
-            'event' => WallEntryLinks::EVENT_AFTER_RUN,
-            'callback' => [Events::class, 'onWallEntryLinksAfterRun'],
-        ],
+        ['class' => WallEntryLinks::class, 'event' => WallEntryLinks::EVENT_INIT, 'callback' => [Events::class, 'onWallEntryLinksInit']],
     ],
 ];

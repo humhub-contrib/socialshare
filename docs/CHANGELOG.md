@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.2.0 (TBA)
+-----------------------
+- Enh: #6 Configurable Social Share Options
+- Chg: Twitter to X
+- Enh: Full Refactor of module
+
 1.1.1 (Unreleased)
 -----------------------
 - Fix #19: Fix asset bundle
@@ -26,3 +32,7 @@ Changelog
 1.0.2 (24 August, 2018)
 -----------------------
 - Fix: PHP 7.2 compatibility
+
+
+
+

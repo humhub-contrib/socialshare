@@ -41,13 +41,13 @@ class m241122_000000_create_socialshare_provider_table extends Migration
         $this->safeCreateIndex(
             'idx-socialshare_provider-enabled',
             $this->table,
-            'enabled'
+            'enabled',
         );
 
         $this->safeCreateIndex(
             'idx-socialshare_provider-sort_order',
             $this->table,
-            'sort_order'
+            'sort_order',
         );
 
         $this->safeAddForeignKeyCreatedBy();

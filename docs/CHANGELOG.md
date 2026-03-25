@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.0 (TBA)
------------------------
+1.2.0 (March 25, 2026)
+----------------------
 - Enh: #6 Configurable Social Share Options
 - Chg: Twitter to X
 - Enh: Full Refactor of module

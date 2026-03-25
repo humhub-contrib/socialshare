@@ -27,7 +27,7 @@ class FacebookDriver extends BaseDriver
         return str_replace(
             array_keys($replacements),
             array_values($replacements),
-            $this->provider->url_pattern
+            $this->provider->url_pattern,
         );
     }
 

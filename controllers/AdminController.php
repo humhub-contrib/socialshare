@@ -42,7 +42,7 @@ class AdminController extends Controller
 
     /**
      * Edit an existing provider
-     * 
+     *
      * @param int $id
      */
     public function actionEdit($id)
@@ -59,7 +59,7 @@ class AdminController extends Controller
 
     /**
      * Delete a provider
-     * 
+     *
      * @param int $id
      */
     public function actionDelete($id)
@@ -80,7 +80,7 @@ class AdminController extends Controller
 
     /**
      * Toggle provider enabled status
-     * 
+     *
      * @param int $id
      */
     public function actionToggle($id)
@@ -118,7 +118,7 @@ class AdminController extends Controller
 
     /**
      * Find model by ID
-     * 
+     *
      * @param int $id
      * @return SocialShareProvider
      * @throws NotFoundHttpException

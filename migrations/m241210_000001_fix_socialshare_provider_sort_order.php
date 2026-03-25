@@ -12,9 +12,10 @@ class m241210_000001_fix_socialshare_provider_sort_order extends Migration
      */
     public function safeUp()
     {
-        $this->update('socialshare_provider', 
-            ['sort_order' => new \yii\db\Expression('id * 100')], 
-            ['sort_order' => 100]
+        $this->update(
+            'socialshare_provider',
+            ['sort_order' => new \yii\db\Expression('id * 100')],
+            ['sort_order' => 100],
         );
 
         $defaultProviders = [
@@ -22,25 +23,27 @@ class m241210_000001_fix_socialshare_provider_sort_order extends Migration
             'x' => 200,
             'linkedin' => 300,
             'line' => 400,
-            'bluesky' => 500
+            'bluesky' => 500,
         ];
 
         foreach ($defaultProviders as $providerId => $sortOrder) {
-            $this->update('socialshare_provider',
+            $this->update(
+                'socialshare_provider',
                 ['sort_order' => $sortOrder],
-                ['provider_id' => $providerId]
+                ['provider_id' => $providerId],
             );
         }
 
-        $this->update('socialshare_provider',
+        $this->update(
+            'socialshare_provider',
             ['sort_order' => 100],
             ['and',
                 ['is_default' => 0],
                 ['or',
                     ['sort_order' => 100],
-                    ['sort_order' => null]
-                ]
-            ]
+                    ['sort_order' => null],
+                ],
+            ],
         );
 
         return true;

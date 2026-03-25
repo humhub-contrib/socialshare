@@ -19,7 +19,7 @@ class BaseDriver
 
     /**
      * Constructor
-     * 
+     *
      * @param SocialShareProvider $provider
      */
     public function __construct(SocialShareProvider $provider)
@@ -29,7 +29,7 @@ class BaseDriver
 
     /**
      * Get the sharing URL
-     * 
+     *
      * @param string $permalink The content URL
      * @param string $text The share text/description
      * @param array $additionalParams Additional URL parameters
@@ -50,7 +50,7 @@ class BaseDriver
     /**
      * Build the share URL from the pattern
      * Can be overridden for platform-specific logic
-     * 
+     *
      * @param string $permalink
      * @param string $text
      * @return string
@@ -65,13 +65,13 @@ class BaseDriver
         return str_replace(
             array_keys($replacements),
             array_values($replacements),
-            $this->provider->url_pattern
+            $this->provider->url_pattern,
         );
     }
 
     /**
      * Get the icon HTML
-     * 
+     *
      * @return string
      */
     public function getIcon()
@@ -84,7 +84,7 @@ class BaseDriver
 
     /**
      * Get the provider name
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -94,7 +94,7 @@ class BaseDriver
 
     /**
      * Get the provider ID
-     * 
+     *
      * @return string
      */
     public function getProviderId()
@@ -104,7 +104,7 @@ class BaseDriver
 
     /**
      * Check if this driver requires special handling
-     * 
+     *
      * @return bool
      */
     public function hasCustomLogic()
@@ -115,7 +115,7 @@ class BaseDriver
     /**
      * Get default provider configuration
      * Override this in subclasses to provide default settings
-     * 
+     *
      * @return array|null
      */
     public static function getDefaultConfig()
@@ -126,7 +126,7 @@ class BaseDriver
     /**
      * Initialize all default providers
      * Scans for driver classes and installs their defaults
-     * 
+     *
      * @return void
      */
     public static function initializeDefaults()
@@ -148,7 +148,7 @@ class BaseDriver
             }
 
             $config = call_user_func([$fullClassName, 'getDefaultConfig']);
-            
+
             if (!$config || !isset($config['provider_id'])) {
                 continue;
             }

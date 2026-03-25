@@ -14,25 +14,25 @@ class SocialShareService
 {
     /**
      * Default HTML options for share links
-     * 
+     *
      * @var array
      */
     protected $defaultOptions = [
         'class' => 'share-link',
         'target' => '_blank',
-        'rel' => 'noopener noreferrer'
+        'rel' => 'noopener noreferrer',
     ];
 
     /**
      * Cache for driver instances
-     * 
+     *
      * @var BaseDriver[]
      */
     protected $drivers = [];
 
     /**
      * Get driver instance for a provider
-     * 
+     *
      * @param SocialShareProvider $provider
      * @return BaseDriver
      */
@@ -47,7 +47,7 @@ class SocialShareService
 
     /**
      * Create driver instance based on provider
-     * 
+     *
      * @param SocialShareProvider $provider
      * @return BaseDriver
      */
@@ -60,7 +60,7 @@ class SocialShareService
 
     /**
      * Get all enabled providers
-     * 
+     *
      * @return SocialShareProvider[]
      */
     public function getEnabledProviders()
@@ -70,7 +70,7 @@ class SocialShareService
 
     /**
      * Get sharing URL for a specific provider
-     * 
+     *
      * @param SocialShareProvider $provider
      * @param string $permalink
      * @param string $text
@@ -86,7 +86,7 @@ class SocialShareService
 
     /**
      * Create a share link HTML element for a provider
-     * 
+     *
      * @param SocialShareProvider $provider
      * @param string $permalink
      * @param string $text
@@ -106,7 +106,7 @@ class SocialShareService
 
     /**
      * Render all enabled share links for a content object
-     * 
+     *
      * @param object $object Content object with getContentDescription() method
      * @param string $permalink
      * @param array $options HTML options

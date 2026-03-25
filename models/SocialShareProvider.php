@@ -8,7 +8,7 @@ use humhub\components\ActiveRecord;
 
 /**
  * SocialShareProvider ActiveRecord
- * 
+ *
  * @property int $id
  * @property string $provider_id Unique identifier for the provider
  * @property string $name Display name
@@ -77,7 +77,7 @@ class SocialShareProvider extends ActiveRecord
 
     /**
      * Get all enabled providers ordered by sort_order
-     * 
+     *
      * @return static[]
      */
     public static function getEnabled()
@@ -90,7 +90,7 @@ class SocialShareProvider extends ActiveRecord
 
     /**
      * Get provider by provider_id
-     * 
+     *
      * @param string $providerId
      * @return static|null
      */
@@ -101,7 +101,7 @@ class SocialShareProvider extends ActiveRecord
 
     /**
      * Get all default providers
-     * 
+     *
      * @return static[]
      */
     public static function getDefaults()
@@ -131,7 +131,7 @@ class SocialShareProvider extends ActiveRecord
 
     /**
      * Get the driver class for this provider
-     * 
+     *
      * @return string
      */
     public function getDriverClass()

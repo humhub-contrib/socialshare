@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) HumHub GmbH & Co. KG
@@ -20,6 +21,6 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/humhub.socialshare.ShareLink.js'
+        'js/humhub.socialshare.ShareLink.js',
     ];
 }

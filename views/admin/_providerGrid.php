@@ -29,9 +29,7 @@ use yii\helpers\Url;
             'format' => 'raw',
             'options' => ['style' => 'width: 50px;'],
             'contentOptions' => ['style' => 'text-align:center; font-size: 1.5rem; line-height: 1;'],
-            'content' => function ($model) {
-                return Icon::get($model->icon_class)->color($model->icon_color);
-            }
+            'content' => fn($model) => Icon::get($model->icon_class)->color($model->icon_color)
         ],
         [
             'attribute' => 'name',

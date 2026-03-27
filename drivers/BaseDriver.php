@@ -40,7 +40,7 @@ class BaseDriver
         $url = $this->buildShareUrl($permalink, $text);
 
         if (!empty($additionalParams)) {
-            $separator = strpos($url, '?') !== false ? '&' : '?';
+            $separator = str_contains($url, '?') ? '&' : '?';
             $url .= $separator . http_build_query($additionalParams);
         }
 

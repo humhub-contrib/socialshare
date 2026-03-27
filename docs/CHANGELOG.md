@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.1 (Unreleased)
+------------------
+- Enh: Automated code refactoring for HumHub 1.18 using Rector
+
 1.2.0 (March 25, 2026)
 ----------------------
 - Enh: #6 Configurable Social Share Options

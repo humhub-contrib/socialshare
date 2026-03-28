@@ -103,9 +103,7 @@ class SocialShareHelper
      */
     public static function getEnabledProviderIds()
     {
-        return array_map(function ($provider) {
-            return $provider->provider_id;
-        }, SocialShareProvider::getEnabled());
+        return array_map(fn($provider) => $provider->provider_id, SocialShareProvider::getEnabled());
     }
 
     /**

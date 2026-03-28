@@ -4,6 +4,10 @@ Changelog
 1.2.1 (Unreleased)
 ------------------
 - Enh: Automated code refactoring for HumHub 1.18 using Rector
+- Enh: New getCustomSettingsFields() for special share providers
+- Enh: Add `custom_settings`
+- Enh: Add configurable MastodonDriver
+- Enh: Delete unused `/resources/js/humhub.socialshare.js`
 
 1.2.0 (March 25, 2026)
 ----------------------

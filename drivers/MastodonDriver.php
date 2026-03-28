@@ -97,7 +97,7 @@ class MastodonDriver extends BaseDriver
             'url_pattern' => 'https://{instance}/share?text={text}',
             'icon_class' => 'share',
             'icon_color' => '#6364ff',
-            'sort_order' => 1000,
+            'sort_order' => 600,
         ];
     }
 }

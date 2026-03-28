@@ -28,6 +28,25 @@ class BaseDriver
     }
 
     /**
+     * Returns field definitions for driver-specific custom settings.
+     * Override in subclasses to declare configurable settings.
+     *
+     * Each entry should be an associative array with the following keys:
+     *   - key (string) The settings key stored in custom_settings JSON
+     *   - label (string) Human-readable field label
+     *   - hint (string) Optional help text shown below the field
+     *   - type (string) Field type: 'text', 'select', 'boolean'
+     *   - default (mixed) Default value shown when no value is stored
+     *   - options (array) Required for type 'select'; key => label pairs
+     *
+     * @return array
+     */
+    public static function getCustomSettingsFields(): array
+    {
+        return [];
+    }
+
+    /**
      * Get the sharing URL
      *
      * @param string $permalink The content URL
@@ -40,7 +59,7 @@ class BaseDriver
         $url = $this->buildShareUrl($permalink, $text);
 
         if (!empty($additionalParams)) {
-            $separator = str_contains($url, '?') ? '&' : '?';
+            $separator = strpos($url, '?') !== false ? '&' : '?';
             $url .= $separator . http_build_query($additionalParams);
         }
 

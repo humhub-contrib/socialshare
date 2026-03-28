@@ -19,7 +19,7 @@ class MastodonDriver extends BaseDriver
     /**
      * Default Mastodon instance to use when none is configured.
      */
-    const DEFAULT_INSTANCE = 'mastodon.social';
+    public const DEFAULT_INSTANCE = 'mastodon.social';
 
     /**
      * Combines text and permalink into the Mastodon compose intent URL,

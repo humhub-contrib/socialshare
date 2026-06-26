@@ -1,9 +1,9 @@
 <?php
 
-use yii\helpers\Html;
-use humhub\widgets\form\ActiveForm;
 use humhub\widgets\bootstrap\Alert;
-use humhub\modules\ui\form\widgets\SortOrderField;
+use humhub\widgets\form\ActiveForm;
+use humhub\widgets\form\SortOrderField;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model humhub\modules\socialshare\models\SocialShareProvider */

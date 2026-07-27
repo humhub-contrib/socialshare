@@ -1,13 +1,17 @@
 Changelog
 =========
 
-1.2.1 (Unreleased)
-------------------
-- Enh: Automated code refactoring for HumHub 1.18 using Rector
+1.2.2 (Unreleased)
+-------------------
 - Enh: New getCustomSettingsFields() for special share providers
 - Enh: Add `custom_settings`
 - Enh: Add configurable MastodonDriver
 - Enh: Delete unused `/resources/js/humhub.socialshare.js`
+
+1.2.1 (July 8, 2026)
+--------------------
+- Enh: Automated code refactoring for HumHub 1.18 using Rector
+- Enh #31: Add aria-label attribute for icon-only buttons
 
 1.2.0 (March 25, 2026)
 ----------------------

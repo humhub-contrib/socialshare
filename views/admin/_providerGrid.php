@@ -29,11 +29,11 @@ use yii\helpers\Url;
             'format' => 'raw',
             'options' => ['style' => 'width: 50px;'],
             'contentOptions' => ['style' => 'text-align:center; font-size: 1.5rem; line-height: 1;'],
-            'content' => fn($model) => Icon::get($model->icon_class)->color($model->icon_color)
+            'content' => fn($model) => Icon::get($model->icon_class)->color($model->icon_color),
         ],
         [
             'attribute' => 'name',
-            'content' => fn($model, $key, $index, $that) => Html::encode($that->getDataCellValue($model, $key, $index))
+            'content' => fn($model, $key, $index, $that) => Html::encode($that->getDataCellValue($model, $key, $index)),
         ],
         [
             'class' => CheckboxColumn::class,
@@ -60,39 +60,40 @@ use yii\helpers\Url;
             'headerOptions' => ['style' => 'text-align:center'],
             'template' => '<div style="display: flex; gap: 4px; justify-content: center;">{update} {delete}</div>',
             'buttons' => [
-                'view' => function (): void {
-                    return;
-                },
-                'delete' => function($url, $model) {
+                'delete' => function ($url, $model) {
                     if ($model->is_default) {
                         return '';
                     }
-                    
+
                     $formId = 'delete-form-' . $model->id;
                     ob_start();
-                    $form = ActiveForm::begin([
+                    ActiveForm::begin([
                         'id' => $formId,
                         'action' => Url::to(['delete', 'id' => $model->id]),
                         'method' => 'post',
                         'acknowledge' => true,
-                        'options' => ['style' => 'display: inline;']
+                        'options' => ['style' => 'display: inline;'],
                     ]);
                     echo Button::danger()
                         ->icon('trash')
+                        ->options(['aria-label' => Yii::t('base', 'Delete')])
                         ->sm()
                         ->submit()
                         ->confirm(
                             Yii::t('SocialshareModule.base', 'Delete Provider'),
                             Yii::t('SocialshareModule.base', 'Are you sure you want to delete this provider?'),
                             Yii::t('base', 'Delete'),
-                            Yii::t('base', 'Cancel')
+                            Yii::t('base', 'Cancel'),
                         );
                     ActiveForm::end();
                     return ob_get_clean();
                 },
-                'update' => fn($url, $model) =>
-                    Button::primary()->icon('edit')->link(Url::to(['edit', 'id' => $model->id]))->sm(),
+                'update' => fn($url, $model) => Button::primary()
+                    ->icon('edit')
+                    ->options(['aria-label' => Yii::t('base', 'Edit')])
+                    ->link(Url::to(['edit', 'id' => $model->id]))
+                    ->sm(),
             ],
         ],
-    ]
+    ],
 ]);

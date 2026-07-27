@@ -32,9 +32,13 @@ class AdminController extends Controller
         $model = new SocialShareProvider();
         $model->enabled = true;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->view->success(Yii::t('SocialshareModule.base', 'Provider created successfully!'));
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->applyCustomSettings($model);
+
+            if ($model->save()) {
+                $this->view->success(Yii::t('SocialshareModule.base', 'Provider created successfully!'));
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('edit', ['model' => $model]);
@@ -49,9 +53,13 @@ class AdminController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->view->success(Yii::t('SocialshareModule.base', 'Provider updated successfully!'));
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->applyCustomSettings($model);
+
+            if ($model->save()) {
+                $this->view->success(Yii::t('SocialshareModule.base', 'Provider updated successfully!'));
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('edit', ['model' => $model]);
@@ -106,9 +114,10 @@ class AdminController extends Controller
         $order = Yii::$app->request->post('order', []);
 
         foreach ($order as $index => $id) {
-            $provider = SocialShareProvider::findOne($id);
-            if ($provider) {
-                $provider->sort_order = $index;
+            $provider = SocialShareProvider::findOne((int)$id);
+
+            if ($provider !== null) {
+                $provider->sort_order = (int)$index;
                 $provider->save(false);
             }
         }
@@ -117,15 +126,50 @@ class AdminController extends Controller
     }
 
     /**
-     * Find model by ID
+     * Re-encode posted custom_settings fields into the model's JSON column.
+     *
+     * The view renders driver-specific fields as array inputs using the naming
+     * convention SocialShareProvider[custom_settings][key], so after a standard
+     * model->load() the attribute holds an array rather than a JSON string.
+     *
+     * This method intercepts that array, strips empty values, and calls
+     * setCustomSettings() to re-encode it correctly before validation and save.
+     *
+     * For providers whose driver declares no custom settings fields, the posted
+     * value will be absent entirely and the existing stored JSON is left untouched.
+     *
+     * @param SocialShareProvider $model
+     */
+    protected function applyCustomSettings(SocialShareProvider $model): void
+    {
+        $posted = Yii::$app->request->post('SocialShareProvider', []);
+
+        if (!isset($posted['custom_settings'])) {
+            return;
+        }
+
+        if (!is_array($posted['custom_settings'])) {
+            return;
+        }
+
+        $filtered = array_filter(
+            $posted['custom_settings'],
+            static fn($v) => $v !== null && $v !== '',
+        );
+
+        $model->setCustomSettings($filtered);
+    }
+
+    /**
+     * Find model by ID or throw 404
      *
      * @param int $id
      * @return SocialShareProvider
      * @throws NotFoundHttpException
      */
-    protected function findModel($id)
+    protected function findModel($id): SocialShareProvider
     {
-        $model = SocialShareProvider::findOne($id);
+        $model = SocialShareProvider::findOne((int)$id);
 
         if ($model === null) {
             throw new NotFoundHttpException(Yii::t('SocialshareModule.base', 'Provider not found.'));

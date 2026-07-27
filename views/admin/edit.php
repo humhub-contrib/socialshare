@@ -3,7 +3,7 @@
 use humhub\helpers\Html;
 use humhub\widgets\form\ActiveForm;
 use humhub\widgets\bootstrap\Alert;
-use humhub\modules\ui\form\widgets\SortOrderField;
+use humhub\widgets\form\SortOrderField;
 
 /* @var $this yii\web\View */
 /* @var $model humhub\modules\socialshare\models\SocialShareProvider */

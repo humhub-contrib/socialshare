@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.2 (Unreleased)
+--------------------
+- Fix #33: Replace unsupported pull-right with float-end
+
 1.2.1 (July 8, 2026)
 --------------------
 - Enh: Automated code refactoring for HumHub 1.18 using Rector

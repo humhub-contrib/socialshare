@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.2 (Unreleased)
---------------------
+1.2.2 (September 8, 2026)
+-------------------------
 - Fix #33: Replace unsupported pull-right with float-end
 
 1.2.1 (July 8, 2026)

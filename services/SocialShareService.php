@@ -83,7 +83,7 @@ class SocialShareService
         return $this->getDriver($provider)->getShareUrl(
             $permalink,
             $text,
-            $additionalParams
+            $additionalParams,
         );
     }
 
@@ -103,7 +103,7 @@ class SocialShareService
         return Html::a(
             $this->getDriver($provider)->getIcon(),
             $this->getShareUrl($provider, $permalink, $text),
-            $options
+            $options,
         );
     }
 
@@ -130,7 +130,7 @@ class SocialShareService
         $text = html_entity_decode(
             strip_tags($html),
             ENT_QUOTES | ENT_HTML5,
-            'UTF-8'
+            'UTF-8',
         );
 
         return trim(preg_replace('/\s+/u', ' ', $text) ?? $text);
@@ -150,7 +150,7 @@ class SocialShareService
 
         if ($object instanceof ContentOwner) {
             $description = $this->convertDescriptionToPlainText(
-                $object->getContentDescription()
+                $object->getContentDescription(),
             );
 
             $description = mb_substr($description, 0, 1000);
@@ -163,7 +163,7 @@ class SocialShareService
                 $provider,
                 $permalink,
                 $description,
-                $options
+                $options,
             );
         }
 

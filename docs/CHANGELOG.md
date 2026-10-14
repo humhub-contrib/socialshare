@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.3 ()
+-------------------------
+- Fix: #34 Markdown showing instead of Plaintext content
+
 1.2.2 (September 8, 2026)
 -------------------------
 - Fix #33: Replace unsupported pull-right with float-end

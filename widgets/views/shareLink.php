@@ -1,25 +1,16 @@
 <?php
 
+use humhub\components\View;
 use humhub\helpers\Html;
+use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\socialshare\assets\Assets;
-use humhub\modules\socialshare\helpers\SocialShareHelper;
+use humhub\modules\socialshare\services\SocialShareService;
 
-/* @var $this yii\web\View */
-/* @var $object object */
-/* @var $permalink string */
-/* @var $options array */
+/* @var $this View */
+/* @var $object ContentActiveRecord */
 
 Assets::register($this);
-
-$linkOptions = [
-    'target' => '_blank',
-    'rel' => 'noopener noreferrer',
-    'class' => 'share-link-item',
-];
-
 ?>
-
-<?= Html::beginTag('span', $options) ?>
-    <?= SocialShareHelper::renderShareLinks($object, $permalink, $linkOptions) ?>
-
+<?= Html::beginTag('span', ['class' => 'shareLinkContainer float-end']) ?>
+    <?= (new SocialShareService())->renderShareLinks($object) ?>
 <?= Html::endTag('span') ?>

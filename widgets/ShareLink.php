@@ -2,58 +2,32 @@
 
 namespace humhub\modules\socialshare\widgets;
 
-use Yii;
-use yii\helpers\Url;
-use humhub\modules\socialshare\helpers\SocialShareHelper;
-use humhub\widgets\JsWidget;
+use humhub\components\Widget;
+use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\socialshare\models\SocialShareProvider;
 
 /**
  * ShareLink Widget
  * Renders social share buttons for content
  */
-class ShareLink extends JsWidget
+class ShareLink extends Widget
 {
     /**
-     * @var object The content object to be shared
+     * @var ContentActiveRecord The content object to be shared
      */
     public $object;
 
     /**
      * @inheritdoc
      */
-    public $jsWidget = 'socialshare.ShareLink';
-
-    /**
-     * @inheritdoc
-     */
-    public $init = true;
-
-    /**
-     * Returns the container HTML attributes
-     * @return array HTML attributes for the container
-     */
-    protected function getAttributes()
-    {
-        return [
-            'class' => 'shareLinkContainer float-end',
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function run()
     {
-        if (empty(SocialShareHelper::getEnabledProviderIds())) {
+        if (empty(SocialShareProvider::getEnabled())) {
             return '';
         }
 
-        $permaLink = Url::to(['/content/perma', 'id' => $this->object->content->id], true);
-
         return $this->render('shareLink', [
             'object' => $this->object,
-            'permalink' => $permaLink,
-            'options' => $this->getOptions(),
         ]);
     }
 }

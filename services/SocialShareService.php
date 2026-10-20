@@ -4,9 +4,10 @@ namespace humhub\modules\socialshare\services;
 
 use cebe\markdown\GithubMarkdown;
 use humhub\helpers\Html;
-use humhub\modules\content\interfaces\ContentOwner;
+use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\socialshare\drivers\BaseDriver;
 use humhub\modules\socialshare\models\SocialShareProvider;
+use yii\helpers\Url;
 
 /**
  * SocialShareService handles business logic for social sharing.
@@ -19,7 +20,7 @@ class SocialShareService
      * @var array
      */
     protected $defaultOptions = [
-        'class' => 'share-link',
+        'class' => 'share-link-item',
         'target' => '_blank',
         'rel' => 'noopener noreferrer',
     ];
@@ -139,22 +140,19 @@ class SocialShareService
     /**
      * Renders share links for a content object using its plain-text description.
      *
-     * @param ContentOwner $object Content object to share
-     * @param string $permalink Permalink to the content
+     * @param ContentActiveRecord $object Content object to share
      * @param array $options HTML options applied to the share links
      * @return string Rendered HTML share links
      */
-    public function renderShareLinks($object, $permalink, $options = [])
+    public function renderShareLinks(ContentActiveRecord $object, array $options = []): string
     {
-        $description = '';
+        $permalink = Url::to(['/content/perma', 'id' => $object->content->id], true);
 
-        if ($object instanceof ContentOwner) {
-            $description = $this->convertDescriptionToPlainText(
-                $object->getContentDescription(),
-            );
-
-            $description = mb_substr($description, 0, 1000);
-        }
+        $description = mb_substr(
+            $this->convertDescriptionToPlainText($object->getContentDescription()),
+            0,
+            1000,
+        );
 
         $links = [];
 

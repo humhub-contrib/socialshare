@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.2.3 ()
+1.2.3 (Unreleased)
 -------------------------
-- Fix: #34 Markdown showing instead of Plaintext content
+- Fix #34: Markdown showing instead of Plaintext content
+- Fix #37: Share buttons not shown to guests with guest access enabled; Provider name not escaped; URL pattern validation (http(s) only, placeholder required); Repeated provider queries per wall entry; Share links open in a popup
 
 1.2.2 (September 8, 2026)
 -------------------------

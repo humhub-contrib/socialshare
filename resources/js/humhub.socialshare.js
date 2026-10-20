@@ -4,6 +4,8 @@
  * @license https://www.humhub.com/licences
  */
 humhub.module('socialshare', function (module, require, $) {
+    const additions = require('ui.additions');
+
     const openSocialSharePopup = (e) => {
         e.preventDefault();
 
@@ -16,9 +18,10 @@ humhub.module('socialshare', function (module, require, $) {
     }
 
     const init = function() {
-        document.querySelectorAll('.shareLinkContainer a').forEach(link =>
-            link.addEventListener('click', e => openSocialSharePopup(e))
-        );
+        // Applied to the share links on the page and to all links loaded later (e.g. wall entries added on scroll)
+        additions.register('socialshare', '.shareLinkContainer a', function ($match) {
+            $match.each((i, link) => link.addEventListener('click', openSocialSharePopup));
+        });
     }
 
     module.export({

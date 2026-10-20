@@ -2,9 +2,8 @@
 
 namespace humhub\modules\socialshare\models;
 
-use Yii;
-use yii\helpers\Inflector;
 use humhub\components\ActiveRecord;
+use Yii;
 
 /**
  * SocialShareProvider ActiveRecord
@@ -26,6 +25,11 @@ use humhub\components\ActiveRecord;
 class SocialShareProvider extends ActiveRecord
 {
     /**
+     * @var static[]|null Enabled providers cached for the current request
+     */
+    private static $enabledProviders = null;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -45,6 +49,7 @@ class SocialShareProvider extends ActiveRecord
             ['provider_id', 'match', 'pattern' => '/^[a-z0-9_]+$/', 'message' => Yii::t('SocialshareModule.base', 'Provider ID can only contain lowercase letters, numbers, and underscores.')],
             [['name'], 'string', 'max' => 100],
             [['url_pattern'], 'string', 'max' => 500],
+            ['url_pattern', 'validateUrlPattern'],
             [['icon_class'], 'string', 'max' => 100],
             [['icon_color'], 'string', 'max' => 7],
             ['icon_color', 'match', 'pattern' => '/^#[0-9A-Fa-f]{6}$/', 'message' => Yii::t('SocialshareModule.base', 'Icon color must be a valid hex color code.')],
@@ -55,6 +60,18 @@ class SocialShareProvider extends ActiveRecord
             [['enabled'], 'default', 'value' => 1],
             [['is_default'], 'default', 'value' => 0],
         ];
+    }
+
+    /**
+     * Allows only http(s) URLs and requires at least one placeholder
+     */
+    public function validateUrlPattern($attribute)
+    {
+        if (!preg_match('#^https?://#i', (string)$this->$attribute)) {
+            $this->addError($attribute, Yii::t('SocialshareModule.base', 'URL Pattern must start with http:// or https://.'));
+        } elseif (!str_contains($this->$attribute, '{url}') && !str_contains($this->$attribute, '{text}')) {
+            $this->addError($attribute, Yii::t('SocialshareModule.base', 'URL Pattern must contain the {url} or {text} placeholder.'));
+        }
     }
 
     /**
@@ -82,10 +99,32 @@ class SocialShareProvider extends ActiveRecord
      */
     public static function getEnabled()
     {
-        return static::find()
-            ->where(['enabled' => 1])
-            ->orderBy(['sort_order' => SORT_ASC, 'name' => SORT_ASC])
-            ->all();
+        if (static::$enabledProviders === null) {
+            static::$enabledProviders = static::find()
+                ->where(['enabled' => 1])
+                ->orderBy(['sort_order' => SORT_ASC, 'name' => SORT_ASC])
+                ->all();
+        }
+
+        return static::$enabledProviders;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        static::$enabledProviders = null;
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterDelete()
+    {
+        static::$enabledProviders = null;
+        parent::afterDelete();
     }
 
     /**

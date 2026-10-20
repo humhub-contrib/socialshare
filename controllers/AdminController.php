@@ -2,9 +2,9 @@
 
 namespace humhub\modules\socialshare\controllers;
 
-use Yii;
 use humhub\modules\admin\components\Controller;
 use humhub\modules\socialshare\models\SocialShareProvider;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -76,44 +76,6 @@ class AdminController extends Controller
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Toggle provider enabled status
-     *
-     * @param int $id
-     */
-    public function actionToggle($id)
-    {
-        $this->forcePostRequest();
-        $model = $this->findModel($id);
-        $model->enabled = !$model->enabled;
-
-        if ($model->save()) {
-            $status = $model->enabled ? 'enabled' : 'disabled';
-            $this->view->success(Yii::t('SocialshareModule.base', 'Provider {status}!', ['status' => $status]));
-        }
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Reorder providers
-     */
-    public function actionReorder()
-    {
-        $this->forcePostRequest();
-        $order = Yii::$app->request->post('order', []);
-
-        foreach ($order as $index => $id) {
-            $provider = SocialShareProvider::findOne($id);
-            if ($provider) {
-                $provider->sort_order = $index;
-                $provider->save(false);
-            }
-        }
-
-        return $this->asJson(['success' => true]);
     }
 
     /**

@@ -2,9 +2,10 @@
 
 namespace humhub\modules\socialshare\drivers;
 
-use Yii;
+use humhub\helpers\Html;
 use humhub\modules\socialshare\models\SocialShareProvider;
 use humhub\modules\ui\icon\widgets\Icon;
+use Yii;
 
 /**
  * Base class for social share drivers
@@ -79,7 +80,7 @@ class BaseDriver
         return Icon::get($this->provider->icon_class)
             ->color($this->provider->icon_color)
             ->style('font-size:16px')
-            ->tooltip($this->provider->name);
+            ->tooltip($this->provider->name, Html::encode($this->provider->name));
     }
 
     /**

@@ -21,6 +21,6 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/humhub.socialshare.ShareLink.js',
+        'js/humhub.socialshare.js',
     ];
 }

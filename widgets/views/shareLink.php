@@ -11,6 +11,6 @@ use humhub\modules\socialshare\services\SocialShareService;
 
 Assets::register($this);
 ?>
-<?= Html::beginTag('span', ['class' => 'shareLinkContainer float-end']) ?>
+<?= Html::beginTag('span', ['class' => 'shareLinkContainer ms-auto order-last']) ?>
     <?= (new SocialShareService())->renderShareLinks($object) ?>
 <?= Html::endTag('span') ?>

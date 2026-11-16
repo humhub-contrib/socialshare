@@ -11,20 +11,20 @@ Use these placeholders in your URL patterns:
 
 ### Reddit
 - URL Pattern: https://reddit.com/submit?url={url}&title={text}
-- Icon Class: reddit
+- Icon Class: brand-reddit
 - Icon Color: #ff4500
 
 ### Pinterest
 - URL Pattern: https://pinterest.com/pin/create/button/?url={url}&description={text}
-- Icon Class: pinterest
+- Icon Class: brand-pinterest
 - Icon Color: #bd081c
 
 ### WhatsApp
 - URL Pattern: https://wa.me/?text={text}%20{url}
-- Icon Class: whatsapp
+- Icon Class: brand-whatsapp
 - Icon Color: #25d366
 
 ### Telegram
 - URL Pattern: https://t.me/share/url?url={url}&text={text}
-- Icon Class: telegram
+- Icon Class: brand-telegram
 - Icon Color: #0088cc

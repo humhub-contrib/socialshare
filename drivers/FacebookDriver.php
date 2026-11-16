@@ -51,7 +51,7 @@ class FacebookDriver extends BaseDriver
             'provider_id' => 'facebook',
             'name' => 'Facebook',
             'url_pattern' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
-            'icon_class' => 'facebook',
+            'icon_class' => 'brand-facebook',
             'icon_color' => '#1877F2',
             'sort_order' => 100,
         ];

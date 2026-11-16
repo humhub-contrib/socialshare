@@ -16,7 +16,7 @@ class LinkedinDriver extends BaseDriver
             'provider_id' => 'linkedin',
             'name' => 'LinkedIn',
             'url_pattern' => 'https://www.linkedin.com/shareArticle?mini=true&url={url}',
-            'icon_class' => 'linkedin-square',
+            'icon_class' => 'brand-linkedin',
             'icon_color' => '#0177b5',
             'sort_order' => 300,
         ];

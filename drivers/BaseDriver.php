@@ -4,7 +4,7 @@ namespace humhub\modules\socialshare\drivers;
 
 use humhub\helpers\Html;
 use humhub\modules\socialshare\models\SocialShareProvider;
-use humhub\modules\ui\icon\widgets\Icon;
+use humhub\widgets\Icon;
 use Yii;
 
 /**

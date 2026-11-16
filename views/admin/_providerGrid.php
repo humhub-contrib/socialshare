@@ -1,11 +1,11 @@
 <?php
 
 use humhub\helpers\Html;
-use humhub\modules\ui\icon\widgets\Icon;
 use humhub\modules\admin\grid\CheckboxColumn;
 use humhub\widgets\bootstrap\Button;
-use humhub\widgets\GridView;
 use humhub\widgets\form\ActiveForm;
+use humhub\widgets\GridView;
+use humhub\widgets\Icon;
 use yii\data\ArrayDataProvider;
 use yii\grid\ActionColumn;
 use yii\helpers\Url;
@@ -15,7 +15,7 @@ use yii\helpers\Url;
 ?>
 
 <?= Button::success(Yii::t('SocialshareModule.base', 'Add Provider'))
-    ->icon('add')->sm()->link(Url::to(['create']))->right() ?>
+    ->icon('plus')->sm()->link(Url::to(['create']))->right() ?>
 
 <br/>
 

@@ -16,7 +16,7 @@ class XDriver extends BaseDriver
             'provider_id' => 'x',
             'name' => 'X',
             'url_pattern' => 'https://x.com/intent/post?text={text}&url={url}',
-            'icon_class' => 'twitter',
+            'icon_class' => 'brand-x',
             'icon_color' => '#55acee',
             'sort_order' => 200,
         ];

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.0 (Unreleased)
+-------------------------
+- Enh: Update for HumHub 1.20 (core `Icon` widget, Tabler brand icons for the default providers)
+
 1.2.3 (Unreleased)
 -------------------------
 - Fix #34: Markdown showing instead of Plaintext content

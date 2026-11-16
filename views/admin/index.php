@@ -1,6 +1,6 @@
 <?php
 
-use humhub\modules\ui\icon\widgets\Icon;
+use humhub\widgets\Icon;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -28,7 +28,7 @@ $this->title = Yii::t('SocialshareModule.base', 'Share Providers');
             </div>
             
             <?= humhub\widgets\bootstrap\Button::success(Yii::t('SocialshareModule.base', 'Add Provider'))
-                ->icon('add')
+                ->icon('plus')
                 ->link(Url::to(['create']))
                 ->sm() ?>
         <?php else: ?>
